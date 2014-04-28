@@ -1,0 +1,16 @@
+[
+{
+  "modid": "powercraft",
+  "name": "Power Craft",
+  "description": "A mod for Minecraft that's based on power and automation",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["Larsg310"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
