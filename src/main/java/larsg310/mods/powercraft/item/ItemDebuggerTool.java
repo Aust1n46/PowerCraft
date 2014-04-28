@@ -29,6 +29,7 @@ public class ItemDebuggerTool extends Item
 				player.addChatMessage(new ChatComponentText("[" + Reference.MOD_NAME + " - Debugging] Energy level = " + ((IEnergy) tileentity).getPowerBar().getEnergyLevel()));
 				return true;
 			}
+			player.addChatMessage(new ChatComponentText("No TileEntity that implements IEnergy!"));
 		}
 		return false;
 	}
