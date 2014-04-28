@@ -2,6 +2,7 @@ package larsg310.mods.powercraft.tileentity;
 
 import larsg310.mods.powercraft.api.IEnergy;
 import larsg310.mods.powercraft.api.PowerBar;
+import larsg310.mods.powercraft.energy.EnergyNet;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -14,12 +15,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityCable extends TileEntity implements IEnergy
 {
-	private ForgeDirection lastReceivedDirection = ForgeDirection.NORTH;
+	private ForgeDirection lastReceivedDirection = ForgeDirection.UNKNOWN;
 	private PowerBar powerBar = new PowerBar(1000);
 	
 	public void updateEntity()
 	{
-		
+		EnergyNet.distributeEnergyToSurrounding(worldObj, xCoord, yCoord, zCoord, lastReceivedDirection, powerBar);
 	}
 	
 	@Override
@@ -71,12 +72,18 @@ public class TileEntityCable extends TileEntity implements IEnergy
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		super.writeToNBT(tag);
-		tag.setInteger("powerLevel", powerBar.getEnergyLevel());
+		powerBar.writeToNBT(tag);
 	}
 	
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
-		powerBar.setEnergyLevel(tag.getInteger("powerLevel"));
+		powerBar.readFromNBT(tag);
+	}
+	
+	@Override
+	public int getPowerTransferRate()
+	{
+		return 100;
 	}
 }
