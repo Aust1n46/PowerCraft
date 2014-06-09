@@ -1,8 +1,9 @@
 package larsg310.mods.powercraft.tileentity;
 
-import larsg310.mods.powercraft.api.IEnergy;
-import larsg310.mods.powercraft.api.PowerBar;
+import larsg310.mods.powercraft.block.BlockType;
 import larsg310.mods.powercraft.energy.EnergyNet;
+import larsg310.mods.powercraft.energy.IEnergy;
+import larsg310.mods.powercraft.energy.EnergyBar;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -12,12 +13,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityCreativeEnergyStorage extends TileEntity implements IEnergy
 {
-	private PowerBar powerBar = new PowerBar(10000, true);
+	private EnergyBar energyBar = new EnergyBar(50000000, true);
 	
 	public void updateEntity()
 	{
-		EnergyNet.distributeEnergyToSurrounding(worldObj, xCoord, yCoord, zCoord, powerBar);
-		powerBar.setEnergyLevel(powerBar.getMaxEnergyLevel());
+		EnergyNet.distributeEnergyToSurrounding(worldObj, xCoord, yCoord, zCoord, energyBar);
+		energyBar.setEnergyLevel(energyBar.getMaxEnergyLevel());
 	}
 	
 	@Override
@@ -29,7 +30,7 @@ public class TileEntityCreativeEnergyStorage extends TileEntity implements IEner
 	@Override
 	public boolean canConnect(ForgeDirection direction)
 	{
-		return direction == ForgeDirection.NORTH;
+		return true;
 	}
 	
 	@Override
@@ -39,21 +40,21 @@ public class TileEntityCreativeEnergyStorage extends TileEntity implements IEner
 	}
 	
 	@Override
-	public PowerBar getPowerBar()
+	public EnergyBar getEnergyBar()
 	{
-		return powerBar;
+		return energyBar;
 	}
 	
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		super.writeToNBT(tag);
-		powerBar.writeToNBT(tag);
+		energyBar.writeToNBT(tag);
 	}
 	
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
-		powerBar.readFromNBT(tag);
+		energyBar.readFromNBT(tag);
 	}
 	
 	public Packet getDescriptionPacket()
@@ -69,8 +70,14 @@ public class TileEntityCreativeEnergyStorage extends TileEntity implements IEner
 	}
 
 	@Override
-	public int getPowerTransferRate()
+	public int getEnergyTransferRate()
 	{
-		return 100;
+		return energyBar.getMaxEnergyLevel();
+	}
+
+	@Override
+	public BlockType getTypeOfBlock()
+	{
+		return BlockType.MACHINE;
 	}
 }

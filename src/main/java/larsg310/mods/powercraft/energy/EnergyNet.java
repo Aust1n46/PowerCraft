@@ -1,7 +1,5 @@
 package larsg310.mods.powercraft.energy;
 
-import larsg310.mods.powercraft.api.IEnergy;
-import larsg310.mods.powercraft.api.PowerBar;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -24,40 +22,12 @@ public class EnergyNet
 	 *            prevents back and forth looping of cables. Please use one of
 	 *            the six valid directions ({@link ForgeDirection}), or UNKNOWN
 	 *            of you don't have a last direction.
-	 * @param powerBar
-	 *            The PowerBar object to take the enrgy from.
+	 * @param energyBar
+	 *            The energyBar object to take the energy from.
 	 */
-	public static void distributeEnergyToSurrounding(World world, int x, int y, int z, ForgeDirection lastDirection, PowerBar powerBar)
+	public static void distributeEnergyToSurrounding(World world, int x, int y, int z, ForgeDirection lastDirection, EnergyBar energyBar)
 	{
-		int sides = 0;
-		boolean sidesCanOutput[] = new boolean[6];
-		for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
-		{
-			if (world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ) instanceof IEnergy)
-			{
-				IEnergy energyTileNextToIt = (IEnergy) world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
-				IEnergy thisEnergyTile = (IEnergy) world.getTileEntity(x, y, z);
-				ForgeDirection invertedSide = ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[direction.ordinal()]];
-				if (thisEnergyTile.canConnect(invertedSide) && energyTileNextToIt.canAddEnergyOnSide(invertedSide))
-				{
-					sidesCanOutput[direction.ordinal()] = true;
-					sides++;
-				}
-			}
-		}
-		for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
-		{
-			if (sidesCanOutput[direction.ordinal()] && direction != lastDirection)
-			{
-				IEnergy energyTile = (IEnergy) world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
-				if (powerBar.getEnergyLevel() - energyTile.getPowerTransferRate() >= 0 && energyTile.getPowerBar().canAddEnergy(energyTile.getPowerTransferRate()))
-				{
-					energyTile.getPowerBar().addEnergy(energyTile.getPowerTransferRate());
-					powerBar.removeEnergy(energyTile.getPowerTransferRate());
-					energyTile.setLastReceivedDirection(ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[direction.ordinal()]]);
-				}
-			}
-		}
+		distributeEnergyToSurroundingWithLoss(world, x, y, z, lastDirection, energyBar, 0);
 	}
 	
 	/**
@@ -72,11 +42,79 @@ public class EnergyNet
 	 *            Self-explainatory
 	 * @param z
 	 *            Self-explainatory
-	 * @param powerBar
-	 *            The PowerBar object to take the enrgy from.
+	 * @param energyBar
+	 *            The energyBar object to take the energy from.
 	 */
-	public static void distributeEnergyToSurrounding(World world, int x, int y, int z, PowerBar powerBar)
+	public static void distributeEnergyToSurrounding(World world, int x, int y, int z, EnergyBar energyBar)
 	{
-		distributeEnergyToSurrounding(world, x, y, z, ForgeDirection.UNKNOWN, powerBar);
+		distributeEnergyToSurrounding(world, x, y, z, ForgeDirection.UNKNOWN, energyBar);
+	}
+	
+	public static void distributeEnergyToSide(World world, int x, int y, int z, ForgeDirection direction, EnergyBar energyBar)
+	{
+		if (world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ) instanceof IEnergy)
+		{
+			IEnergy energyTileOnSide = (IEnergy) world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
+			IEnergy thisEnergyTile = (IEnergy) world.getTileEntity(x, y, z);
+			ForgeDirection invertedSide = ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[direction.ordinal()]];
+			if (thisEnergyTile.canConnect(invertedSide) && energyTileOnSide.canAddEnergyOnSide(invertedSide))
+			{
+				if (energyBar.getEnergyLevel() - thisEnergyTile.getEnergyTransferRate() >= 0)
+				{
+					if (energyTileOnSide.getEnergyBar().canAddEnergy(thisEnergyTile.getEnergyTransferRate()))
+					{
+						energyTileOnSide.getEnergyBar().addEnergy(thisEnergyTile.getEnergyTransferRate());
+						energyBar.removeEnergy(thisEnergyTile.getEnergyTransferRate());
+					}
+					else
+					{
+						int remaining = energyTileOnSide.getEnergyBar().addEnergyWithRemaining(thisEnergyTile.getEnergyTransferRate());
+						energyBar.removeEnergy(thisEnergyTile.getEnergyTransferRate() - remaining);
+					}
+					energyTileOnSide.setLastReceivedDirection(ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[direction.ordinal()]]);
+				}
+			}
+		}
+	}
+	
+	public static void distributeEnergyToSurroundingWithLoss(World world, int x, int y, int z, ForgeDirection lastDirection, EnergyBar energyBar, int loss)
+	{
+		int sides = 0;
+		boolean sidesCanOutput[] = new boolean[6];
+		for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
+		{
+			if (world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ) instanceof IEnergy)
+			{
+				IEnergy energyTileNextToIt = (IEnergy) world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
+				IEnergy thisEnergyTile = (IEnergy) world.getTileEntity(x, y, z);
+				ForgeDirection invertedSide = ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[direction.ordinal()]];
+				if (thisEnergyTile.canConnect(invertedSide) && energyTileNextToIt.canAddEnergyOnSide(invertedSide) && direction != lastDirection)
+				{
+					sidesCanOutput[direction.ordinal()] = true;
+					sides++;
+				}
+			}
+		}
+		for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
+		{
+			if (sidesCanOutput[direction.ordinal()] && direction != lastDirection)
+			{
+				IEnergy energyTile = (IEnergy) world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
+				if (energyBar.getEnergyLevel() - energyTile.getEnergyTransferRate() / sides >= 0)
+				{
+					if (energyTile.getEnergyBar().canAddEnergy(energyTile.getEnergyTransferRate() / sides - loss))
+					{
+						energyTile.getEnergyBar().addEnergy(energyTile.getEnergyTransferRate() / sides - loss);
+						energyBar.removeEnergy(energyTile.getEnergyTransferRate() / sides);
+					}
+					else
+					{
+						int remaining = energyTile.getEnergyBar().addEnergyWithRemaining(energyTile.getEnergyTransferRate() / sides - loss);
+						energyBar.removeEnergy(energyTile.getEnergyTransferRate() / sides - remaining);
+					}
+					energyTile.setLastReceivedDirection(ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[direction.ordinal()]]);
+				}
+			}
+		}
 	}
 }

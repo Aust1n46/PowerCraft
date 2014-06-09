@@ -1,19 +1,19 @@
-package larsg310.mods.powercraft.api;
+package larsg310.mods.powercraft.energy;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class PowerBar
+public class EnergyBar
 {
 	private int maxEnergyLevel = 0;
 	private int energyLevel = 0;
 	
-	public PowerBar(int maxEnergyLevel, boolean shouldStartOfWithMaxEnergy)
+	public EnergyBar(int maxEnergyLevel, boolean shouldStartOfWithMaxEnergy)
 	{
 		this.maxEnergyLevel = maxEnergyLevel;
 		if (shouldStartOfWithMaxEnergy) this.energyLevel = maxEnergyLevel;
 	}
 	
-	public PowerBar(int maxEnergyLevel)
+	public EnergyBar(int maxEnergyLevel)
 	{
 		this(maxEnergyLevel, false);
 	}
@@ -61,5 +61,22 @@ public class PowerBar
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		this.energyLevel = tag.getInteger("energyLevel");
+	}
+	
+	public int getEnergyLevelScaled(int scale)
+	{
+		return energyLevel * scale / maxEnergyLevel;
+	}
+	
+	public int addEnergyWithRemaining(int amount)
+	{
+		energyLevel+=amount;
+		if(energyLevel > maxEnergyLevel)
+		{
+			int powerRemaining = energyLevel-maxEnergyLevel;
+			energyLevel-=powerRemaining;
+			return powerRemaining;
+		}
+		return 0;
 	}
 }

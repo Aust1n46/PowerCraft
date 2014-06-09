@@ -1,8 +1,9 @@
 package larsg310.mods.powercraft.model;
 
+import java.lang.reflect.Field;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
 public class ModelCable extends ModelBase
 {
@@ -104,78 +105,48 @@ public class ModelCable extends ModelBase
 		DownClosing.setRotationPoint(-3F, 23F, -3F);
 		DownClosing.setTextureSize(32, 32);
 		DownClosing.mirror = true;
-		setRotation(DownClosing, 0F, 0F, 0F);
 	}
 	
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	public void setRotation(ModelRenderer part, float x, float y, float z)
 	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		Middle.render(f5);
-		WestClosing.render(f5);
-		EastClosing.render(f5);
-		East.render(f5);
-		West.render(f5);
-		North.render(f5);
-		NorthClosing.render(f5);
-		South.render(f5);
-		SouthClosing.render(f5);
-		Up.render(f5);
-		UpClosing.render(f5);
-		Down.render(f5);
-		DownClosing.render(f5);
-	}
-	
-	private void setRotation(ModelRenderer model, float x, float y, float z)
-	{
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
-	
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-	}
-	
-	public void renderNorth(boolean closing)
-	{
-		this.North.render(0.0625F);
-		if (closing) this.NorthClosing.render(0.0625F);
-	}
-	
-	public void renderSouth(boolean closing)
-	{
-		this.South.render(0.0625F);
-		if (closing) this.SouthClosing.render(0.0625F);
-	}
-	
-	public void renderWest(boolean closing)
-	{
-		this.West.render(0.0625F);
-		if (closing) this.WestClosing.render(0.0625F);
-	}
-	
-	public void renderEast(boolean closing)
-	{
-		this.East.render(0.0625F);
-		if (closing) this.EastClosing.render(0.0625F);
-	}
-	
-	public void renderUp(boolean closing)
-	{
-		this.Up.render(0.0625F);
-		if (closing) this.UpClosing.render(0.0625F);
-	}
-	
-	public void renderDown(boolean closing)
-	{
-		this.Down.render(0.0625F);
-		if (closing) this.DownClosing.render(0.0625F);
+		part.rotateAngleX = x;
+		part.rotateAngleY = y;
+		part.rotateAngleZ = z;
 	}
 	
 	public void renderMiddle()
 	{
-		this.Middle.render(0.0625F);
+		Middle.render(0.0625F);
+	}
+	
+	public void renderNorth(boolean closing)
+	{
+		North.render(0.0625F);
+		if (closing) NorthClosing.render(0.0625F);
+	}
+	public void renderSouth(boolean closing)
+	{
+		South.render(0.0625F);
+		if (closing) SouthClosing.render(0.0625F);
+	}
+	public void renderEast(boolean closing)
+	{
+		East.render(0.0625F);
+		if (closing) EastClosing.render(0.0625F);
+	}
+	public void renderWest(boolean closing)
+	{
+		West.render(0.0625F);
+		if (closing) WestClosing.render(0.0625F);
+	}
+	public void renderUp(boolean closing)
+	{
+		Up.render(0.0625F);
+		if (closing) UpClosing.render(0.0625F);
+	}
+	public void renderDown(boolean closing)
+	{
+		Down.render(0.0625F);
+		if (closing) DownClosing.render(0.0625F);
 	}
 }

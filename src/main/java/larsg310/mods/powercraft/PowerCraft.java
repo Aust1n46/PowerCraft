@@ -1,9 +1,15 @@
 package larsg310.mods.powercraft;
 
 import larsg310.mods.powercraft.block.ModBlocks;
+import larsg310.mods.powercraft.creativetab.CreativeTabPowerCraft;
+import larsg310.mods.powercraft.handler.AppHandler;
+import larsg310.mods.powercraft.handler.GuiHandler;
+import larsg310.mods.powercraft.handler.ModEventHandler;
 import larsg310.mods.powercraft.item.ModItems;
 import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.proxy.CommonProxy;
+import larsg310.mods.powercraft.recipe.CraftingRecipes;
+import larsg310.mods.powercraft.recipe.SmeltingRecipes;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -21,13 +27,12 @@ public class PowerCraft
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.COMMON_PROXY)
 	public static CommonProxy proxy;
 	
-	public static final CreativeTabs CREATIVE_TAB = CreativeTabs.tabBlock;
+	public static final CreativeTabs CREATIVE_TAB = new CreativeTabPowerCraft(CreativeTabs.getNextID(), Reference.MOD_ID);
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ModBlocks.init();
-		
 		ModItems.init();
 	}
 	
@@ -36,6 +41,11 @@ public class PowerCraft
 	{
 		proxy.registerRenderers();
 		proxy.registerTileEntitys();
+		GuiHandler.register();
+		ModEventHandler.register();
+		AppHandler.register();
+		CraftingRecipes.register();
+		SmeltingRecipes.register();
 	}
 	
 	@EventHandler

@@ -1,5 +1,6 @@
-package larsg310.mods.powercraft.api;
+package larsg310.mods.powercraft.energy;
 
+import larsg310.mods.powercraft.block.BlockType;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -11,9 +12,11 @@ public interface IEnergy
 	
 	public boolean canConnect(ForgeDirection direction);
 	
-	public PowerBar getPowerBar();
+	public EnergyBar getEnergyBar();
 	
 	public void setLastReceivedDirection(ForgeDirection direction);
 	
-	public int getPowerTransferRate();
+	public int getEnergyTransferRate();
+	
+	public BlockType getTypeOfBlock();
 }

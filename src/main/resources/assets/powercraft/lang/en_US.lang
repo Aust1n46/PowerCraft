@@ -1,2 +1,40 @@
-tile.cable.name=Cable
-tile.energyStorage.name=Energy Storage
+tile.cable.0.name=Insulated Cable
+tile.cable.1.name=Uninsulated Cable
+
+tile.energyStorage.0.name=Energy Storage (Creative)
+tile.energyStorage.1.name=Energy Storage (Tier 1)
+tile.energyStorage.2.name=Energy Storage (Tier 2)
+tile.energyStorage.3.name=Energy Storage (Tier 3)
+
+tile.generator.0.name=Energy Generator
+tile.generator.1.name=Water Mill
+
+tile.machines.0.name=Energized Furnace
+tile.machines.1.name=Energized Grinder
+tile.machines.2.name=Compressor
+
+tile.connectedGlass.0.name=Clear Glass
+tile.connectedGlass.1.name=Wood Glass
+
+tile.computer.0.name=Computer Screen
+tile.computer.1.name=Computer Drive
+
+item.energyMeter.name=Energy Meter
+
+item.dusts.0.name=Gold Dust
+item.dusts.1.name=Iron Dust
+item.dusts.2.name=Glass Dust
+item.dusts.3.name=Obsidian Dust
+item.dusts.4.name=Coal Dust
+item.dusts.5.name=Coal-Obsidian Dust
+item.dusts.6.name=Hardened Dust
+
+item.compounds.0.name=Raw Coal-Obsidian Compound
+
+item.compressedCompounds.0.name=Compressed Coal-Obsidian Compound
+
+item.ingots.0.name=Hardened Ingot
+
+itemGroup.powercraft=PowerCraft
+
+info.block.stone=Stone is a block that is found in the world under about three layers of dirt of the surface. When mined, it drops cobblestone. Stone can also be used as a building material and for crafting. 
