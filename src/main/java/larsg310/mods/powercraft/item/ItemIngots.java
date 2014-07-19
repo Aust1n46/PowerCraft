@@ -13,7 +13,7 @@ import net.minecraft.util.IIcon;
 
 public class ItemIngots extends Item
 {
-	private String[] ingots = new String[] {"coalObsidian"};
+	private String[] ingots = new String[] {"refined", "coalObsidian"};
 	private IIcon[] ingotIcons = new IIcon[ingots.length];
 	
 	public ItemIngots()
@@ -49,8 +49,8 @@ public class ItemIngots extends Item
 		return getUnlocalizedName() + "." + itemstack.getItemDamage();
 	}
 	
-	public boolean isFull3D()
+	public IIcon getIconFromDamage(int meta)
 	{
-		return true;
+		return ingotIcons[meta];
 	}
 }

@@ -1,15 +1,23 @@
 package larsg310.mods.powercraft.tileentity;
 
+import java.util.ArrayList;
+
 import larsg310.mods.powercraft.block.BlockType;
+import larsg310.mods.powercraft.damage.DamageSources;
 import larsg310.mods.powercraft.energy.EnergyBar;
 import larsg310.mods.powercraft.energy.IEnergy;
+import larsg310.mods.powercraft.item.ModItems;
+import larsg310.mods.powercraft.recipe.CompressingRecipes;
 import larsg310.mods.powercraft.recipe.GrindingRecipes;
+import larsg310.mods.powercraft.upgrade.IUpgrade;
+import larsg310.mods.powercraft.upgrade.Upgrade;
 import larsg310.mods.powercraft.util.InventoryUtil;
+import larsg310.mods.powercraft.util.MachineUtil;
 import larsg310.mods.powercraft.util.NBTUtil;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -19,16 +27,60 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityEnergizedGrinder extends TileEntity implements IEnergy, IInventory
 {
-	private ItemStack[] inventory = new ItemStack[2];
-	private EnergyBar energyBar = new EnergyBar(1000);
+	private ItemStack[] inventory = new ItemStack[18];
+	private EnergyBar energyBar = new EnergyBar(10000);
 	
-	private int energyUsePerGrind = 16;
+	private int energyUsePerGrind = 1600;
+	private int energyUsePerGrindDefault = 1600;
 	public boolean isGrinding;
 	private int grindStatus;
 	private int grindTime = 160;
+	private int defaultGrindTime = 160;
 	public int rotation = 3;
+	public boolean hasExtraInventory;
 	
 	public void updateEntity()
+	{
+		updateUpgrades();
+		updateGrinding();
+	}
+	
+	private void updateUpgrades()
+	{
+		int inventoryUpgrades = 0;
+		grindTime = defaultGrindTime;
+		energyUsePerGrind = energyUsePerGrindDefault;
+		energyBar.resetMaxEnergyLevel();
+		for (int index = 2; index < 6; index++)
+		{
+			if (inventory[index] != null && inventory[index].getItem() instanceof IUpgrade)
+			{
+				IUpgrade itemUpgrade = (IUpgrade) inventory[index].getItem();
+				this.energyBar.setMaxEnergyLevel(energyBar.getMaxEnergyLevel() + itemUpgrade.getUpgradeWorthness(Upgrade.STORAGE, inventory[index].getItemDamage()) * inventory[index].stackSize);
+				this.grindTime -= itemUpgrade.getUpgradeWorthness(Upgrade.SPEED, inventory[index].getItemDamage()) * inventory[index].stackSize;
+				this.energyUsePerGrind -= itemUpgrade.getUpgradeWorthness(Upgrade.EFFICIENCY, inventory[index].getItemDamage() * inventory[index].stackSize);
+				if (inventory[index].isItemEqual(new ItemStack(ModItems.UPGRADES, 1, 3)))
+				{
+					inventoryUpgrades++;
+				}
+			}
+		}
+		hasExtraInventory = inventoryUpgrades > 0;
+		if (energyBar.getEnergyLevel() > energyBar.getMaxEnergyLevel())
+		{
+			if (!worldObj.isRemote)
+			{
+				ArrayList<Entity> entities = (ArrayList<Entity>) worldObj.getEntitiesWithinAABB(EntityPlayer.class, getRenderBoundingBox().expand(3, 3, 3));
+				for (Entity entity : entities)
+				{
+					entity.attackEntityFrom(DamageSources.ELECTRICITY, (energyBar.getEnergyLevel() - energyBar.getMaxEnergyLevel()) / 100);
+				}
+				energyBar.setEnergyLevel(energyBar.getMaxEnergyLevel());
+			}
+		}
+	}
+	
+	private void updateGrinding()
 	{
 		boolean modified = isGrinding;
 		this.isGrinding = canGrind();
@@ -52,45 +104,12 @@ public class TileEntityEnergizedGrinder extends TileEntity implements IEnergy, I
 	
 	private boolean canGrind()
 	{
-		if (this.inventory[0] == null)
-		{
-			return false;
-		}
-		
-		ItemStack itemstack = GrindingRecipes.getGrindingResult(this.inventory[0]);
-		if (itemstack == null) return false;
-		if (!energyBar.canRemoveEnergy(energyUsePerGrind)) return false;
-		if (this.inventory[1] == null) return true;
-		if (!this.inventory[1].isItemEqual(itemstack)) return false;
-		int result = this.inventory[1].stackSize + itemstack.stackSize;
-		return (result <= getInventoryStackLimit()) && (result <= itemstack.getMaxStackSize());
+		return MachineUtil.canOperate(inventory, energyBar, GrindingRecipes.getGrindingResult(inventory[0]), this, energyUsePerGrind, 1);
 	}
 	
 	private void grind()
 	{
-		ItemStack itemstack = GrindingRecipes.getGrindingResult(this.inventory[0]);
-		
-		if (itemstack != null)
-		{
-			if (this.inventory[1] == null)
-			{
-				this.inventory[1] = itemstack.copy();
-			}
-			else if (this.inventory[1].isItemEqual(itemstack))
-			{
-				this.inventory[1].stackSize += itemstack.stackSize;
-			}
-			
-			this.inventory[0].stackSize -= 1;
-			
-			if (this.inventory[0].stackSize <= 0)
-			{
-				this.inventory[0] = null;
-			}
-			this.energyBar.removeEnergy(energyUsePerGrind);
-		}
-		this.grindStatus = 0;
-		this.isGrinding = false;
+		MachineUtil.operate(inventory, energyBar, GrindingRecipes.getGrindingResult(inventory[0]), this, grindStatus, isGrinding, energyUsePerGrind, 1);
 	}
 	
 	@Override
@@ -223,6 +242,7 @@ public class TileEntityEnergizedGrinder extends TileEntity implements IEnergy, I
 		super.writeToNBT(tag);
 		energyBar.writeToNBT(tag);
 		tag.setInteger("rotation", rotation);
+		tag.setInteger("grindStatus", grindStatus);
 		NBTUtil.writeItemStackArrayToNBT(inventory, tag);
 	}
 	
@@ -231,6 +251,7 @@ public class TileEntityEnergizedGrinder extends TileEntity implements IEnergy, I
 		super.readFromNBT(tag);
 		energyBar.readFromNBT(tag);
 		rotation = tag.getInteger("rotation");
+		grindStatus = tag.getInteger("grindStatus");
 		NBTUtil.readItemStackArrayFromNBT(inventory, tag);
 	}
 }

@@ -19,6 +19,11 @@ tile.connectedGlass.1.name=Wood Glass
 tile.computer.0.name=Computer Screen
 tile.computer.1.name=Computer Drive
 
+tile.metalBlocks.0.name=Purified Iron Block
+tile.metalBlocks.1.name=Coal-Obsidian Block
+
+tile.liquidizedMatter.name=Liquidized Matter
+
 item.energyMeter.name=Energy Meter
 
 item.dusts.0.name=Gold Dust
@@ -33,8 +38,15 @@ item.compounds.0.name=Raw Coal-Obsidian Compound
 
 item.compressedCompounds.0.name=Compressed Coal-Obsidian Compound
 
-item.ingots.0.name=Hardened Ingot
+item.ingots.0.name=Refined Iron
+item.ingots.1.name=Hardened Ingot
+
+item.upgrades.0.name=Storage Upgrade
+item.upgrades.1.name=Efficiency Upgrade
+item.upgrades.2.name=Speed upgrade
 
 itemGroup.powercraft=PowerCraft
 
 info.block.stone=Stone is a block that is found in the world under about three layers of dirt of the surface. When mined, it drops cobblestone. Stone can also be used as a building material and for crafting. 
+
+death.attack.electricity=%1$s was electrocuted

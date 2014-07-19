@@ -53,4 +53,9 @@ public class ItemCompound extends Item
 	{
 		return true;
 	}
+	
+	public IIcon getIconFromDamage(int meta)
+	{
+		return compoundIcons[meta];
+	}
 }

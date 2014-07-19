@@ -6,6 +6,7 @@ import larsg310.mods.powercraft.container.ContainerCompressor;
 import larsg310.mods.powercraft.container.ContainerEnergizedFurnace;
 import larsg310.mods.powercraft.energy.EnergyBar;
 import larsg310.mods.powercraft.energy.IEnergy;
+import larsg310.mods.powercraft.lib.Energy;
 import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.tileentity.TileEntityCompressor;
 import larsg310.mods.powercraft.util.GuiUtil;
@@ -41,7 +42,7 @@ public class GuiCompressor extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
 	{
 		this.mc.getTextureManager().bindTexture(GUI);
-		GuiUtil.drawRectangle(guiLeft, guiTop, xSize, ySize, 256, 256, 1, 0, 0);
+		GuiUtil.drawRectangle(guiLeft, guiTop, 176, ySize, 256, 256, 0, 0);
 		int energyBarSize = 48;
 		this.drawTexturedModalRect(guiLeft + 8, guiTop + 8 + energyBarSize - ((IEnergy) tileentity).getEnergyBar().getEnergyLevelScaled(energyBarSize), 176, 31, 16, ((IEnergy) tileentity).getEnergyBar().getEnergyLevelScaled(energyBarSize));
 		int middleX = (this.width - this.xSize) / 2;
@@ -71,7 +72,7 @@ public class GuiCompressor extends GuiContainer
 		EnergyBar energyBar = ((IEnergy) tileentity).getEnergyBar();
 		if (x >= minX && x <= maxX && y >= minY && y <= maxY)
 		{
-			this.drawHoveringText(Arrays.asList(energyBar.getEnergyLevel() + " / " + energyBar.getMaxEnergyLevel() + " Joule"), x - guiLeft - 6, y - guiTop, fontRendererObj);
+			this.drawHoveringText(Arrays.asList(energyBar.getEnergyLevel() + " / " + energyBar.getMaxEnergyLevel() + " " + Energy.WATT.getName()), x - guiLeft - 6, y - guiTop, fontRendererObj);
 		}
 	}
 }

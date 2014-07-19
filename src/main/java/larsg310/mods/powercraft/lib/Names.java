@@ -8,6 +8,9 @@ public class Names
 	public static final String MACHINES = "machines";
 	public static final String CONNECTED_GLASS = "connectedGlass";
 	public static final String COMPUTER = "computer";
+	public static final String METAL_BLOCKS = "metalBlocks";
+	public static final String LIQUIDIZED_MATTER = "liquidizedMatter";
+	public static final String CONSTRUCTABLE_BLOCK = "constructableBlock";
 	
 	public static final String ENERGY_METER = "energyMeter";
 	public static final String DUSTS = "dusts";
@@ -19,4 +22,6 @@ public class Names
 	public static final String HARDENED_SHOVEL = "hardenedShovel";
 	public static final String HARDENED_AXE = "hardenedAxe";
 	public static final String HARDENED_HOE = "hardenedHoe";
+	public static final String UPGRADES = "upgrades";
+	public static final String BUCKET_LIQUIDIZED_MATTER = "bucketLiquidizedMatter";
 }

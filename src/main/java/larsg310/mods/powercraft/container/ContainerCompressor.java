@@ -1,6 +1,7 @@
 package larsg310.mods.powercraft.container;
 
 import larsg310.mods.powercraft.slot.SlotOutput;
+import larsg310.mods.powercraft.slot.SlotUpgrade;
 import larsg310.mods.powercraft.tileentity.TileEntityCompressor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -28,6 +29,10 @@ public class ContainerCompressor extends Container
 		
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 35));
 		this.addSlotToContainer(new SlotOutput(player, tileentity, 1, 116, 35));
+		this.addSlotToContainer(new SlotUpgrade(tileentity, 2, 152, 8));
+		this.addSlotToContainer(new SlotUpgrade(tileentity, 3, 152, 26));
+		this.addSlotToContainer(new SlotUpgrade(tileentity, 4, 152, 44));
+		this.addSlotToContainer(new SlotUpgrade(tileentity, 5, 152, 62));
 		
 		for (int i = 0; i < 3; ++i)
 		{

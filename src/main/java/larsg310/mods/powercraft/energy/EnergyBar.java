@@ -5,11 +5,12 @@ import net.minecraft.nbt.NBTTagCompound;
 public class EnergyBar
 {
 	private int maxEnergyLevel = 0;
+	private int defaultMaxEnergyLevel;
 	private int energyLevel = 0;
 	
 	public EnergyBar(int maxEnergyLevel, boolean shouldStartOfWithMaxEnergy)
 	{
-		this.maxEnergyLevel = maxEnergyLevel;
+		this.maxEnergyLevel = defaultMaxEnergyLevel = maxEnergyLevel;
 		if (shouldStartOfWithMaxEnergy) this.energyLevel = maxEnergyLevel;
 	}
 	
@@ -36,6 +37,11 @@ public class EnergyBar
 	public boolean canRemoveEnergy(int amount)
 	{
 		return (energyLevel - amount) >= 0;
+	}
+	
+	public void setMaxEnergyLevel(int newMax)
+	{
+		this.maxEnergyLevel = newMax;
 	}
 	
 	public int getMaxEnergyLevel()
@@ -70,13 +76,18 @@ public class EnergyBar
 	
 	public int addEnergyWithRemaining(int amount)
 	{
-		energyLevel+=amount;
-		if(energyLevel > maxEnergyLevel)
+		energyLevel += amount;
+		if (energyLevel > maxEnergyLevel)
 		{
-			int powerRemaining = energyLevel-maxEnergyLevel;
-			energyLevel-=powerRemaining;
+			int powerRemaining = energyLevel - maxEnergyLevel;
+			energyLevel -= powerRemaining;
 			return powerRemaining;
 		}
 		return 0;
+	}
+	
+	public void resetMaxEnergyLevel()
+	{
+		maxEnergyLevel = defaultMaxEnergyLevel;
 	}
 }

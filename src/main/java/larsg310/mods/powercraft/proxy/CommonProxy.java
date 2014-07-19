@@ -4,6 +4,7 @@ import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.tileentity.TileEntityCompressor;
 import larsg310.mods.powercraft.tileentity.TileEntityComputerDrive;
 import larsg310.mods.powercraft.tileentity.TileEntityComputerScreen;
+import larsg310.mods.powercraft.tileentity.TileEntityConstructableBlock;
 import larsg310.mods.powercraft.tileentity.TileEntityCreativeEnergyStorage;
 import larsg310.mods.powercraft.tileentity.TileEntityEnergizedFurnace;
 import larsg310.mods.powercraft.tileentity.TileEntityEnergizedGrinder;
@@ -28,5 +29,6 @@ public class CommonProxy
 		GameRegistry.registerTileEntity(TileEntityCompressor.class, Reference.MOD_ID + ":Compressor");
 		GameRegistry.registerTileEntity(TileEntityComputerScreen.class, Reference.MOD_ID + ":ComputerScreen");
 		GameRegistry.registerTileEntity(TileEntityComputerDrive.class, Reference.MOD_ID + ":ComputerDrive");
+		GameRegistry.registerTileEntity(TileEntityConstructableBlock.class, Reference.MOD_ID + ":ConstructableBlock");
 	}
 }

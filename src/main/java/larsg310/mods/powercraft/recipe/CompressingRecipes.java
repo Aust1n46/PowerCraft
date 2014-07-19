@@ -14,7 +14,7 @@ public class CompressingRecipes
 		{
 			if (itemstack.isItemEqual(new ItemStack(ModItems.DUSTS, 1, 2)) && stackSizeIsMoreOrEqual(itemstack, 2)) return new ItemStack(ModBlocks.CONNECTED_GLASS, 1, 0);
 			if (itemstack.isItemEqual(new ItemStack(ModItems.COMPOUNDS, 1, 0)) && stackSizeIsMoreOrEqual(itemstack, 1)) return new ItemStack(ModItems.COMPRESSED_COMPOUNDS, 1, 0);
-			if (itemstack.isItemEqual(new ItemStack(ModItems.DUSTS, 1, 6)) && stackSizeIsMoreOrEqual(itemstack, 1)) return new ItemStack(ModItems.INGOTS, 1, 0);
+			if (itemstack.isItemEqual(new ItemStack(ModItems.DUSTS, 1, 6)) && stackSizeIsMoreOrEqual(itemstack, 1)) return new ItemStack(ModItems.INGOTS, 1, 1);
 		}
 		return null;
 	}
@@ -26,9 +26,12 @@ public class CompressingRecipes
 	
 	public static int getStackSizeToDecrease(ItemStack itemstack)
 	{
-		if (itemstack.getItem() == Item.getItemFromBlock(ModBlocks.CONNECTED_GLASS))
+		if (itemstack != null)
 		{
-			return 2;
+			if (itemstack.getItem() == Item.getItemFromBlock(ModBlocks.CONNECTED_GLASS))
+			{
+				return 2;
+			}
 		}
 		return 1;
 	}

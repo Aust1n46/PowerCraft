@@ -33,7 +33,7 @@ public class ConnectedTextures
 			bitMatrix[6] = world.getBlock(x, y, z + 1) == block && !(world.getBlock(x, y + 1, z + 1) == block);
 			bitMatrix[7] = world.getBlock(x + 1, y, z + 1) == block && !(world.getBlock(x + 1, y + 1, z + 1) == block);
 		}
-		if (side == 2)
+		if (side == 5)
 		{
 			bitMatrix[0] = world.getBlock(x - 1, y + 1, z) == block && !(world.getBlock(x - 1, y + 1, z - 1) == block);
 			bitMatrix[1] = world.getBlock(x, y + 1, z) == block && !(world.getBlock(x, y + 1, z - 1) == block);
@@ -66,7 +66,7 @@ public class ConnectedTextures
 			bitMatrix[6] = world.getBlock(x, y - 1, z) == block && !(world.getBlock(x - 1, y - 1, z) == block);
 			bitMatrix[7] = world.getBlock(x, y - 1, z + 1) == block && !(world.getBlock(x - 1, y - 1, z + 1) == block);
 		}
-		if (side == 5)
+		if (side == 2)
 		{
 			bitMatrix[0] = world.getBlock(x, y + 1, z - 1) == block && !(world.getBlock(x + 1, y + 1, z - 1) == block);
 			bitMatrix[1] = world.getBlock(x, y + 1, z) == block && !(world.getBlock(x + 1, y + 1, z) == block);

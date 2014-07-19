@@ -5,6 +5,7 @@ import java.util.Arrays;
 import larsg310.mods.powercraft.container.ContainerEnergizedGrinder;
 import larsg310.mods.powercraft.energy.EnergyBar;
 import larsg310.mods.powercraft.energy.IEnergy;
+import larsg310.mods.powercraft.lib.Energy;
 import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.tileentity.TileEntityEnergizedGrinder;
 import larsg310.mods.powercraft.util.GuiUtil;
@@ -16,6 +17,7 @@ import net.minecraft.world.World;
 public class GuiEnergizedGrinder extends GuiContainer
 {
 	private static final ResourceLocation GUI = new ResourceLocation(Reference.MOD_ID, "textures/gui/guiEnergizedGrinder.png");
+	private static final ResourceLocation EXTRA_INVENTORY = new ResourceLocation(Reference.MOD_ID, "textures/gui/guiExtraInventory.png");
 	
 	public final EntityPlayer player;
 	public final World world;
@@ -23,6 +25,7 @@ public class GuiEnergizedGrinder extends GuiContainer
 	public final int y;
 	public final int z;
 	public TileEntityEnergizedGrinder tileentity;
+	public boolean prevExtraInventory;
 	
 	public GuiEnergizedGrinder(EntityPlayer player, World world, int x, int y, int z)
 	{
@@ -33,16 +36,16 @@ public class GuiEnergizedGrinder extends GuiContainer
 		this.y = y;
 		this.z = z;
 		this.tileentity = (TileEntityEnergizedGrinder) world.getTileEntity(x, y, z);
-		
 	}
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
 	{
+		xSize = 176 + (tileentity.hasExtraInventory ? 60 : 0);
 		this.mc.getTextureManager().bindTexture(GUI);
-		GuiUtil.drawRectangle(guiLeft, guiTop, xSize, ySize, 256, 256, 1, 0, 0);
+		GuiUtil.drawRectangle(guiLeft + (tileentity.hasExtraInventory ? 60 : 0), guiTop, 176, ySize, 256, 256, 0, 0);
 		int energyBarSize = 48;
-		this.drawTexturedModalRect(guiLeft + 8, guiTop + 8 + energyBarSize - ((IEnergy) tileentity).getEnergyBar().getEnergyLevelScaled(energyBarSize), 176, 31, 16, ((IEnergy) tileentity).getEnergyBar().getEnergyLevelScaled(energyBarSize));
+		this.drawTexturedModalRect(guiLeft + 8 + (tileentity.hasExtraInventory ? 60 : 0), guiTop + 8 + energyBarSize - ((IEnergy) tileentity).getEnergyBar().getEnergyLevelScaled(energyBarSize), 176, 31, 16, ((IEnergy) tileentity).getEnergyBar().getEnergyLevelScaled(energyBarSize));
 		int middleX = (this.width - this.xSize) / 2;
 		int middleY = (this.height - this.ySize) / 2;
 		
@@ -53,6 +56,16 @@ public class GuiEnergizedGrinder extends GuiContainer
 		
 		int scale = this.tileentity.getGrindProgressScaled(24);
 		this.drawTexturedModalRect(middleX + 79, middleY + 34, 176, 14, scale, 16);
+		if (tileentity.hasExtraInventory)
+		{
+			this.mc.getTextureManager().bindTexture(EXTRA_INVENTORY);
+			GuiUtil.drawRectangle(guiLeft, guiTop, 64, 87, 128, 128, 0, 0);
+		}
+		if (prevExtraInventory != tileentity.hasExtraInventory)
+		{
+			prevExtraInventory = tileentity.hasExtraInventory;
+			((ContainerEnergizedGrinder) this.inventorySlots).updateSlots();
+		}
 	}
 	
 	@Override
@@ -63,14 +76,14 @@ public class GuiEnergizedGrinder extends GuiContainer
 	
 	private void drawEnergyLevel(int x, int y)
 	{
-		int minX = guiLeft + 8;
-		int maxX = guiLeft + 8 + 15;
+		int minX = guiLeft + 8 + (tileentity.hasExtraInventory ? 60 : 0);
+		int maxX = guiLeft + 8 + 15 + (tileentity.hasExtraInventory ? 60 : 0);
 		int minY = guiTop + 8;
 		int maxY = guiTop + 8 + 47;
 		EnergyBar energyBar = ((IEnergy) tileentity).getEnergyBar();
 		if (x >= minX && x <= maxX && y >= minY && y <= maxY)
 		{
-			this.drawHoveringText(Arrays.asList(energyBar.getEnergyLevel() + " / " + energyBar.getMaxEnergyLevel() + " Joule"), x - guiLeft - 6, y - guiTop, fontRendererObj);
+			this.drawHoveringText(Arrays.asList(energyBar.getEnergyLevel() + " / " + energyBar.getMaxEnergyLevel() + " " + Energy.WATT.getName()), x - guiLeft - 6, y - guiTop, fontRendererObj);
 		}
 	}
 }

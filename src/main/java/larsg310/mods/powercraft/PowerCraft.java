@@ -2,7 +2,9 @@ package larsg310.mods.powercraft;
 
 import larsg310.mods.powercraft.block.ModBlocks;
 import larsg310.mods.powercraft.creativetab.CreativeTabPowerCraft;
+import larsg310.mods.powercraft.fluid.ModFluids;
 import larsg310.mods.powercraft.handler.AppHandler;
+import larsg310.mods.powercraft.handler.BucketHandler;
 import larsg310.mods.powercraft.handler.GuiHandler;
 import larsg310.mods.powercraft.handler.ModEventHandler;
 import larsg310.mods.powercraft.item.ModItems;
@@ -32,6 +34,7 @@ public class PowerCraft
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		ModFluids.init();
 		ModBlocks.init();
 		ModItems.init();
 	}
@@ -44,6 +47,7 @@ public class PowerCraft
 		GuiHandler.register();
 		ModEventHandler.register();
 		AppHandler.register();
+		BucketHandler.register();
 		CraftingRecipes.register();
 		SmeltingRecipes.register();
 	}

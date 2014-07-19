@@ -31,10 +31,6 @@ public class SlotOutput extends Slot
         super.onPickupFromSlot(player, itemstack);
     }
 
-    /**
-     * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an
-     * internal count then calls onCrafting(item).
-     */
     protected void onCrafting(ItemStack itemstack, int count)
     {
         this.onCrafting(itemstack);

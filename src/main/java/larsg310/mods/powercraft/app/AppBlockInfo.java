@@ -41,7 +41,7 @@ public class AppBlockInfo extends App
 	{
 		GL11.glColor3f(1, 1, 1);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(SIDE_BAR);
-		GuiUtil.drawRectangle(281, -1, 6, 203, 6, 203, 1, 0, 0);
+		GuiUtil.drawRectangle(281, -1, 6, 203, 6, 203, 0, 0);
 		int maxScrolled = BlockUtil.vanillaBlocks.length / appsPerRow - 5;
 		for (int column = 0; column < 5; column++)
 		{
@@ -69,7 +69,7 @@ public class AppBlockInfo extends App
 					float blue = (float) (ColorizerGrass.getGrassColor(0.5D, 1) & 255) / 255F;
 					GL11.glColor3f(red, green, blue);
 				}
-				GuiUtil.drawRectangle(291 + 40 * row, 5 + 40 * column, 32, 32, 32, 32, 1, 0, 0);
+				GuiUtil.drawRectangle(291 + 40 * row, 5 + 40 * column, 32, 32, 32, 32, 0, 0);
 				GL11.glColor3f(1, 1, 1);
 				if (currentBlock != null)
 				{
@@ -113,7 +113,7 @@ public class AppBlockInfo extends App
 				if (x >= minX && x <= maxX && y >= minY && y <= maxY)
 				{
 					Minecraft.getMinecraft().getTextureManager().bindTexture(gui.APP_HOVER);
-					GuiUtil.drawRectangle(minX - gui.getGuiLeft() - 1, minY - 26, 34, 34, 34, 34, 1, 0, 0);
+					GuiUtil.drawRectangle(minX - gui.getGuiLeft() - 1, minY - 26, 34, 34, 34, 34, 0, 0);
 					gui.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(block.getUnlocalizedName() + prefix + ".name")), x - gui.getGuiLeft() + 10, y - gui.getGuiTop(), Minecraft.getMinecraft().fontRenderer);
 				}
 			}

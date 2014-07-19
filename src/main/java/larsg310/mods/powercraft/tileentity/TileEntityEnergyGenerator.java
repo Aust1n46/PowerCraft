@@ -1,12 +1,18 @@
 package larsg310.mods.powercraft.tileentity;
 
+import java.util.ArrayList;
+
 import larsg310.mods.powercraft.block.BlockType;
+import larsg310.mods.powercraft.damage.DamageSources;
 import larsg310.mods.powercraft.energy.EnergyBar;
 import larsg310.mods.powercraft.energy.EnergyNet;
 import larsg310.mods.powercraft.energy.IEnergy;
+import larsg310.mods.powercraft.item.ModItems;
 import larsg310.mods.powercraft.upgrade.IUpgrade;
+import larsg310.mods.powercraft.upgrade.Upgrade;
 import larsg310.mods.powercraft.util.InventoryUtil;
 import larsg310.mods.powercraft.util.NBTUtil;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -23,26 +29,101 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileEntityEnergyGenerator extends TileEntity implements IEnergy, IInventory, ISidedInventory
 {
 	private EnergyBar energyBar = new EnergyBar(10000);
-	private ItemStack[] inventory = new ItemStack[1];
+	private ItemStack[] inventory = new ItemStack[7];
 	public int burnTime;
 	public int currentItemBurnTime;
 	public int rotation = 3;
+	private float modifier = 17.5F;
+	private float defaultModifier = 17.5F;
+	public boolean hasExtraInventory;
+	public int burnTimeRemovedPerTick = 3;
 	
 	public void updateEntity()
+	{
+		updateUpgrades();
+		updateGenerating();
+	}
+	
+	private void updateUpgrades()
+	{
+		int inventoryUpgrades = 0;
+		modifier = defaultModifier;
+		energyBar.resetMaxEnergyLevel();
+		for (int index = 1; index < 5; index++)
+		{
+			if (inventory[index] != null && inventory[index].getItem() instanceof IUpgrade)
+			{
+				IUpgrade itemUpgrade = (IUpgrade) inventory[index].getItem();
+				this.energyBar.setMaxEnergyLevel(energyBar.getMaxEnergyLevel() + itemUpgrade.getUpgradeWorthness(Upgrade.STORAGE, inventory[index].getItemDamage()) * inventory[index].stackSize);
+				this.modifier -= itemUpgrade.getUpgradeWorthness(Upgrade.SPEED, inventory[index].getItemDamage()) * inventory[index].stackSize;
+				if (inventory[index].isItemEqual(new ItemStack(ModItems.UPGRADES, 1, 3)))
+				{
+					inventoryUpgrades++;
+				}
+			}
+		}
+		hasExtraInventory = inventoryUpgrades > 0;
+		if (energyBar.getEnergyLevel() > energyBar.getMaxEnergyLevel())
+		{
+			if (!worldObj.isRemote)
+			{
+				ArrayList<Entity> entities = (ArrayList<Entity>) worldObj.getEntitiesWithinAABB(EntityPlayer.class, getRenderBoundingBox().expand(3, 3, 3));
+				for (Entity entity : entities)
+				{
+					entity.attackEntityFrom(DamageSources.ELECTRICITY, (energyBar.getEnergyLevel() - energyBar.getMaxEnergyLevel()) / 100);
+				}
+			}
+			energyBar.setEnergyLevel(energyBar.getMaxEnergyLevel());
+		}
+	}
+	
+	private void updateGenerating()
 	{
 		boolean modified = burnTime > 0;
 		if (burnTime > 0)
 		{
-			burnTime--;
-			energyBar.addEnergyWithRemaining(1);
-		}
-		if (burnTime == 0 && TileEntityFurnace.isItemFuel(inventory[0]))
-		{
-			currentItemBurnTime = burnTime = TileEntityFurnace.getItemBurnTime(inventory[0]) / 10;
-			inventory[0].stackSize--;
-			if (inventory[0].stackSize <= 0)
+			if (burnTime > burnTimeRemovedPerTick)
 			{
-				inventory[0] = null;
+				burnTime -= burnTimeRemovedPerTick;
+				energyBar.addEnergyWithRemaining(burnTimeRemovedPerTick);
+			}
+			else
+			{
+				energyBar.addEnergyWithRemaining(burnTime);
+				burnTime = 0;
+			}
+		}
+		else if (burnTime > 0)
+		{
+			energyBar.addEnergyWithRemaining(burnTime);
+			burnTime = 0;
+		}
+		if (burnTime == 0 && (TileEntityFurnace.isItemFuel(inventory[0]) || TileEntityFurnace.isItemFuel(inventory[5]) || TileEntityFurnace.isItemFuel(inventory[6])))
+		{
+			currentItemBurnTime = burnTime += (int) (TileEntityFurnace.getItemBurnTime(inventory[0]) * modifier) + (int) (TileEntityFurnace.getItemBurnTime(inventory[5]) * modifier) + (int) (TileEntityFurnace.getItemBurnTime(inventory[6]) * modifier);
+			if (inventory[0] != null)
+			{
+				inventory[0].stackSize--;
+				if (inventory[0].stackSize <= 0)
+				{
+					inventory[0] = null;
+				}
+			}
+			if (inventory[5] != null)
+			{
+				inventory[5].stackSize--;
+				if (inventory[5].stackSize <= 0)
+				{
+					inventory[5] = null;
+				}
+			}
+			if (inventory[6] != null)
+			{
+				inventory[6].stackSize--;
+				if (inventory[6].stackSize <= 0)
+				{
+					inventory[6] = null;
+				}
 			}
 		}
 		EnergyNet.distributeEnergyToSurrounding(worldObj, xCoord, yCoord, zCoord, energyBar);
@@ -217,6 +298,8 @@ public class TileEntityEnergyGenerator extends TileEntity implements IEnergy, II
 		super.writeToNBT(tag);
 		energyBar.writeToNBT(tag);
 		tag.setInteger("rotation", rotation);
+		tag.setInteger("burnTime", burnTime);
+		tag.setInteger("currentItemBurnTime", currentItemBurnTime);
 		NBTUtil.writeItemStackArrayToNBT(inventory, tag);
 	}
 	
@@ -225,6 +308,8 @@ public class TileEntityEnergyGenerator extends TileEntity implements IEnergy, II
 		super.readFromNBT(tag);
 		energyBar.readFromNBT(tag);
 		rotation = tag.getInteger("rotation");
+		burnTime = tag.getInteger("burnTime");
+		currentItemBurnTime = tag.getInteger("currentItemBurnTime");
 		NBTUtil.readItemStackArrayFromNBT(inventory, tag);
 	}
 }

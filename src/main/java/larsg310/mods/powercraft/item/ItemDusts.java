@@ -55,4 +55,9 @@ public class ItemDusts extends Item
 	{
 		return true;
 	}
+	
+	public IIcon getIconFromDamage(int meta)
+	{
+		return dustIcons[meta];
+	}
 }

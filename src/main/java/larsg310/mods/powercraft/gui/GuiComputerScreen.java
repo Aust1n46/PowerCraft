@@ -47,7 +47,7 @@ public class GuiComputerScreen extends GuiContainer
 	{
 		GL11.glColor4f(1, 1, 1, 1);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(GUI);
-		GuiUtil.drawRectangle(guiLeft, guiTop - 6, xSize, ySize, 512, 512, 1, 0, 0);
+		GuiUtil.drawRectangle(guiLeft, guiTop - 6, xSize, ySize, 512, 512, 0, 0);
 		if (tileentity.drive == null)
 		{
 			fontRendererObj.drawString("No drive found! Please install a drive!", guiLeft + 11, guiTop + 5, 0xFFFFFF);
@@ -59,7 +59,7 @@ public class GuiComputerScreen extends GuiContainer
 				for (int index = 0; index < tileentity.drive.apps.size(); index++)
 				{
 					Minecraft.getMinecraft().getTextureManager().bindTexture(tileentity.drive.apps.get(index).getAppTexture());
-					GuiUtil.drawRectangle(guiLeft + 11, guiTop + 5, 32, 32, 32, 32, 1, 0, 0);
+					GuiUtil.drawRectangle(guiLeft + 11, guiTop + 5, 32, 32, 32, 32, 0, 0);
 				}
 			}
 		}
@@ -82,7 +82,7 @@ public class GuiComputerScreen extends GuiContainer
 					if (x >= minX && x <= maxX && y >= minY && y <= maxY)
 					{
 						Minecraft.getMinecraft().getTextureManager().bindTexture(APP_HOVER);
-						GuiUtil.drawRectangle(minX - guiLeft - 1, minY - 26, 34, 34, 34, 34, 1, 0, 0);
+						GuiUtil.drawRectangle(minX - guiLeft - 1, minY - 26, 34, 34, 34, 34, 0, 0);
 						this.drawHoveringText(Arrays.asList(tileentity.drive.apps.get(appIndex).getAppName()), x - guiLeft + 10, y - guiTop, fontRendererObj);
 					}
 				}

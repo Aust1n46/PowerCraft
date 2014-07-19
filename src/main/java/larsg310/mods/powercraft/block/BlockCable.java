@@ -47,8 +47,8 @@ public class BlockCable extends Block
 		{
 			blockBounds[direction.ordinal()] = world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ) instanceof IEnergy && ((IEnergy) world.getTileEntity(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ)).canConnect(direction);
 		}
-		if (meta == 0) return AxisAlignedBB.getAABBPool().getAABB(x + (blockBounds[4] ? 0 : 0.375F), y + (blockBounds[0] ? 0 : 0.375F), z + (blockBounds[2] ? 0 : 0.375F), x + (blockBounds[5] ? 1 : 0.625F), y + (blockBounds[1] ? 1 : 0.625F), z + (blockBounds[3] ? 1 : 0.625F));
-		if (meta == 1) return AxisAlignedBB.getAABBPool().getAABB(x + (blockBounds[4] ? 0 : 0.375F + 0.0625F), y + (blockBounds[0] ? 0 : 0.375F + 0.0625F), z + (blockBounds[2] ? 0 : 0.375F + 0.0625F), x + (blockBounds[5] ? 1 : 0.625F - 0.0625F), y + (blockBounds[1] ? 1 : 0.625F - 0.0625F), z + (blockBounds[3] ? 1 : 0.625F - 0.0625F));
+		if (meta == 0) return AxisAlignedBB.getBoundingBox(x + (blockBounds[4] ? 0 : 0.375F), y + (blockBounds[0] ? 0 : 0.375F), z + (blockBounds[2] ? 0 : 0.375F), x + (blockBounds[5] ? 1 : 0.625F), y + (blockBounds[1] ? 1 : 0.625F), z + (blockBounds[3] ? 1 : 0.625F));
+		if (meta == 1) return AxisAlignedBB.getBoundingBox(x + (blockBounds[4] ? 0 : 0.375F + 0.0625F), y + (blockBounds[0] ? 0 : 0.375F + 0.0625F), z + (blockBounds[2] ? 0 : 0.375F + 0.0625F), x + (blockBounds[5] ? 1 : 0.625F - 0.0625F), y + (blockBounds[1] ? 1 : 0.625F - 0.0625F), z + (blockBounds[3] ? 1 : 0.625F - 0.0625F));
 		return super.getCollisionBoundingBoxFromPool(world, x, y, z);
 	}
 	

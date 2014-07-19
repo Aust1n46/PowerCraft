@@ -2,6 +2,7 @@ package larsg310.mods.powercraft.block;
 
 import java.util.List;
 
+import larsg310.mods.powercraft.lib.Energy;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -35,11 +36,11 @@ public class ItemBlockStandardMetadata extends ItemBlock
 			int meta = itemstack.getItemDamage();
 			if (meta == 0)
 			{
-				list.add("Energy loss: 0 J/m");
+				list.add("Energy loss: 0 " + Energy.WATT.getSymbol() + "/m");
 			}
 			if (meta == 1)
 			{
-				list.add("Energy loss: 1 J/m");
+				list.add("Energy loss: 1 " + Energy.WATT.getSymbol() + "/m");
 			}
 		}
 		if (itemstack.getItem() == Item.getItemFromBlock(ModBlocks.COMPUTER) && itemstack.getItemDamage() == 0)
