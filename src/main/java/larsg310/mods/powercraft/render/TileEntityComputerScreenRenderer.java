@@ -1,4 +1,4 @@
-package larsg310.mods.powercraft.renderer;
+package larsg310.mods.powercraft.render;
 
 import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.model.ModelComputerScreen;

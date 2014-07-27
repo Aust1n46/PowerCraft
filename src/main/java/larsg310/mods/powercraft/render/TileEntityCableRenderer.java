@@ -1,4 +1,4 @@
-package larsg310.mods.powercraft.renderer;
+package larsg310.mods.powercraft.render;
 
 import larsg310.mods.powercraft.block.BlockType;
 import larsg310.mods.powercraft.energy.IEnergy;

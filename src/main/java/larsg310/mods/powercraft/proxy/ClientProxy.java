@@ -1,15 +1,17 @@
 package larsg310.mods.powercraft.proxy;
 
 import larsg310.mods.powercraft.block.ModBlocks;
+import larsg310.mods.powercraft.entity.EntityRobot;
 import larsg310.mods.powercraft.lib.Names;
 import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.lib.RenderIds;
-import larsg310.mods.powercraft.renderer.ItemCableRenderer;
-import larsg310.mods.powercraft.renderer.ItemComputerRenderer;
-import larsg310.mods.powercraft.renderer.TileEntityCableRenderer;
-import larsg310.mods.powercraft.renderer.TileEntityComputerDriveRenderer;
-import larsg310.mods.powercraft.renderer.TileEntityComputerScreenRenderer;
-import larsg310.mods.powercraft.renderer.TileEntityContructableBlockRenderer;
+import larsg310.mods.powercraft.render.EntityRobotRenderer;
+import larsg310.mods.powercraft.render.ItemCableRenderer;
+import larsg310.mods.powercraft.render.ItemComputerRenderer;
+import larsg310.mods.powercraft.render.TileEntityCableRenderer;
+import larsg310.mods.powercraft.render.TileEntityComputerDriveRenderer;
+import larsg310.mods.powercraft.render.TileEntityComputerScreenRenderer;
+import larsg310.mods.powercraft.render.TileEntityContructableBlockRenderer;
 import larsg310.mods.powercraft.tileentity.TileEntityCable;
 import larsg310.mods.powercraft.tileentity.TileEntityComputerDrive;
 import larsg310.mods.powercraft.tileentity.TileEntityComputerScreen;
@@ -28,8 +30,12 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.registerTileEntity(TileEntityUninsulatedCable.class, Reference.MOD_ID + ":" + Names.CABLE + "Uninsulated", TileEntityCableRenderer.instance);
 		ClientRegistry.registerTileEntity(TileEntityComputerScreen.class, Reference.MOD_ID + ":" + Names.COMPUTER + "Screen", TileEntityComputerScreenRenderer.instance);
 		ClientRegistry.registerTileEntity(TileEntityComputerDrive.class, Reference.MOD_ID + ":" + Names.COMPUTER + "Drive", TileEntityComputerDriveRenderer.instance);
+		
 		RenderingRegistry.registerBlockHandler(RenderIds.CONSTRUCTABLE_BLOCK, TileEntityContructableBlockRenderer.instance);
+		
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.CABLE), ItemCableRenderer.instance);
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.COMPUTER), ItemComputerRenderer.instance);
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new EntityRobotRenderer());
 	}
 }

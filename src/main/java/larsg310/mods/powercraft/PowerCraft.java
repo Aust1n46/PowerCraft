@@ -2,6 +2,7 @@ package larsg310.mods.powercraft;
 
 import larsg310.mods.powercraft.block.ModBlocks;
 import larsg310.mods.powercraft.creativetab.CreativeTabPowerCraft;
+import larsg310.mods.powercraft.entity.Entities;
 import larsg310.mods.powercraft.fluid.ModFluids;
 import larsg310.mods.powercraft.handler.AppHandler;
 import larsg310.mods.powercraft.handler.BucketHandler;
@@ -44,6 +45,7 @@ public class PowerCraft
 	{
 		proxy.registerRenderers();
 		proxy.registerTileEntitys();
+		Entities.register();
 		GuiHandler.register();
 		ModEventHandler.register();
 		AppHandler.register();
