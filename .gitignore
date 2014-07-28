@@ -1,9 +1,6 @@
-$ cat .gitignore
 /*
-!/src
-!build.gradle
-!*.project
-!.gradle
-!gradlew
-!gradlew.bat
-!/gradle
+/*/
+!/src/
+!.gitignore
+!gradlew*
+!/gradle/
