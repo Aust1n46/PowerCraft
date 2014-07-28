@@ -13,7 +13,11 @@ import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.proxy.CommonProxy;
 import larsg310.mods.powercraft.recipe.CraftingRecipes;
 import larsg310.mods.powercraft.recipe.SmeltingRecipes;
+import larsg310.mods.powercraft.task.Task;
+import larsg310.mods.powercraft.task.TaskType;
+import larsg310.mods.powercraft.util.BlockCoord;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -57,6 +61,45 @@ public class PowerCraft
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		
+		Task task = new Task(TaskType.BUILD_HOUSE);
+		for (int y = 0; y < 5; y++)
+		{
+			task.blocks.add(new BlockCoord(0, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(1, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(2, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(3, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(4, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(5, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(6, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(7, y, 0, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 0, Blocks.air));
+			
+			task.blocks.add(new BlockCoord(0, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(1, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(2, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(3, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(4, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(5, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(6, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(7, y, 9, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 9, Blocks.air));
+			
+			task.blocks.add(new BlockCoord(0, y, 1, Blocks.air));
+			task.blocks.add(new BlockCoord(0, y, 2, Blocks.air));
+			task.blocks.add(new BlockCoord(0, y, 3, Blocks.air));
+			task.blocks.add(new BlockCoord(0, y, 4, Blocks.air));
+			task.blocks.add(new BlockCoord(0, y, 5, Blocks.air));
+			task.blocks.add(new BlockCoord(0, y, 6, Blocks.air));
+			task.blocks.add(new BlockCoord(0, y, 7, Blocks.air));
+			
+			task.blocks.add(new BlockCoord(8, y, 1, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 2, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 3, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 4, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 5, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 6, Blocks.air));
+			task.blocks.add(new BlockCoord(8, y, 7, Blocks.air));
+		}
+		task.save();
 	}
 }
