@@ -62,6 +62,7 @@ public class PowerCraft
     public void postInit(FMLPostInitializationEvent event)
     {
         Task task = new Task(TaskType.BUILD_HOUSE);
+        
         for (int y = 0; y < 5; y++)
         {
             task.blocks.add(new BlockCoord(0, y, 0, Blocks.air));
