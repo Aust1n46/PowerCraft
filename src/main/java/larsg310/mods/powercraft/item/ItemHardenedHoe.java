@@ -7,10 +7,10 @@ import net.minecraft.item.ItemHoe;
 
 public class ItemHardenedHoe extends ItemHoe
 {
-	public ItemHardenedHoe()
-	{
-		super(ModToolMaterial.HARDENED);
-		this.setUnlocalizedName(Names.HARDENED_HOE);
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-	}
+    public ItemHardenedHoe()
+    {
+        super(ModToolMaterial.HARDENED);
+        this.setUnlocalizedName(Names.HARDENED_HOE);
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+    }
 }

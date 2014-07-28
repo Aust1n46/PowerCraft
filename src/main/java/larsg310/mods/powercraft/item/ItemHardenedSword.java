@@ -7,10 +7,10 @@ import net.minecraft.item.ItemSword;
 
 public class ItemHardenedSword extends ItemSword
 {
-	public ItemHardenedSword()
-	{
-		super(ModToolMaterial.HARDENED);
-		this.setUnlocalizedName(Names.HARDENED_SWORD);
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-	}
+    public ItemHardenedSword()
+    {
+        super(ModToolMaterial.HARDENED);
+        this.setUnlocalizedName(Names.HARDENED_SWORD);
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+    }
 }

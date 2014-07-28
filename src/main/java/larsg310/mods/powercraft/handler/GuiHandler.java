@@ -19,30 +19,30 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class GuiHandler implements IGuiHandler
 {
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		if (ID == GuiIds.POWER_GENERATOR) return new ContainerEnergyGenerator(player, world, x, y, z);
-		if (ID == GuiIds.ENERGIZED_FURNACE) return new ContainerEnergizedFurnace(player, world, x, y, z);
-		if (ID == GuiIds.ENERGIZED_GRINDER) return new ContainerEnergizedGrinder(player, world, x, y, z);
-		if (ID == GuiIds.COMPRESSOR) return new ContainerCompressor(player, world, x, y, z);
-		if (ID == GuiIds.COMPUTER_SCREEN) return new ContainerComputerScreen(player, world, x, y, z);
-		return null;
-	}
-	
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		if (ID == GuiIds.POWER_GENERATOR) return new GuiEnergyGenerator(player, world, x, y, z);
-		if (ID == GuiIds.ENERGIZED_FURNACE) return new GuiEnergizedFurnace(player, world, x, y, z);
-		if (ID == GuiIds.ENERGIZED_GRINDER) return new GuiEnergizedGrinder(player, world, x, y, z);
-		if (ID == GuiIds.COMPRESSOR) return new GuiCompressor(player, world, x, y, z);
-		if (ID == GuiIds.COMPUTER_SCREEN) return new GuiComputerScreen(player, world, x, y, z);
-		return null;
-	}
-	
-	public static void register()
-	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(PowerCraft.instance, new GuiHandler());
-	}
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        if (ID == GuiIds.POWER_GENERATOR) return new ContainerEnergyGenerator(player, world, x, y, z);
+        if (ID == GuiIds.ENERGIZED_FURNACE) return new ContainerEnergizedFurnace(player, world, x, y, z);
+        if (ID == GuiIds.ENERGIZED_GRINDER) return new ContainerEnergizedGrinder(player, world, x, y, z);
+        if (ID == GuiIds.COMPRESSOR) return new ContainerCompressor(player, world, x, y, z);
+        if (ID == GuiIds.COMPUTER_SCREEN) return new ContainerComputerScreen(player, world, x, y, z);
+        return null;
+    }
+    
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        if (ID == GuiIds.POWER_GENERATOR) return new GuiEnergyGenerator(player, world, x, y, z);
+        if (ID == GuiIds.ENERGIZED_FURNACE) return new GuiEnergizedFurnace(player, world, x, y, z);
+        if (ID == GuiIds.ENERGIZED_GRINDER) return new GuiEnergizedGrinder(player, world, x, y, z);
+        if (ID == GuiIds.COMPRESSOR) return new GuiCompressor(player, world, x, y, z);
+        if (ID == GuiIds.COMPUTER_SCREEN) return new GuiComputerScreen(player, world, x, y, z);
+        return null;
+    }
+    
+    public static void register()
+    {
+        NetworkRegistry.INSTANCE.registerGuiHandler(PowerCraft.instance, new GuiHandler());
+    }
 }

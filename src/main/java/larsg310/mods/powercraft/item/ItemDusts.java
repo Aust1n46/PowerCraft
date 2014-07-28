@@ -15,49 +15,49 @@ import net.minecraft.util.IIcon;
 
 public class ItemDusts extends Item
 {
-	private String[] dusts = new String[] {"gold", "iron", "glass", "obsidian", "coal", "coalObsidian", "hardened"};
-	private IIcon[] dustIcons = new IIcon[dusts.length];
-	
-	public ItemDusts()
-	{
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-		this.setUnlocalizedName(Names.DUSTS);
-		this.setHasSubtypes(true);
-	}
-	
-	public void getSubItems(Item item, CreativeTabs tab, List list)
-	{
-		for (int meta = 0; meta < dusts.length; meta++)
-		{
-			list.add(new ItemStack(this, 1, meta));
-		}
-	}
-	
-	public IIcon getIconIndex(ItemStack itemstack)
-	{
-		return dustIcons[itemstack.getItemDamage()];
-	}
-	
-	public void registerIcons(IIconRegister iconRegister)
-	{
-		for (int i = 0; i < dusts.length; i++)
-		{
-			dustIcons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName() + "." + i);
-		}
-	}
-	
-	public String getUnlocalizedName(ItemStack itemstack)
-	{
-		return getUnlocalizedName() + "." + itemstack.getItemDamage();
-	}
-	
-	public boolean isFull3D()
-	{
-		return true;
-	}
-	
-	public IIcon getIconFromDamage(int meta)
-	{
-		return dustIcons[meta];
-	}
+    private String[] dusts = new String[] {"gold", "iron", "glass", "obsidian", "coal", "coalObsidian", "hardened"};
+    private IIcon[] dustIcons = new IIcon[dusts.length];
+    
+    public ItemDusts()
+    {
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+        this.setUnlocalizedName(Names.DUSTS);
+        this.setHasSubtypes(true);
+    }
+    
+    public void getSubItems(Item item, CreativeTabs tab, List list)
+    {
+        for (int meta = 0; meta < dusts.length; meta++)
+        {
+            list.add(new ItemStack(this, 1, meta));
+        }
+    }
+    
+    public IIcon getIconIndex(ItemStack itemstack)
+    {
+        return dustIcons[itemstack.getItemDamage()];
+    }
+    
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        for (int i = 0; i < dusts.length; i++)
+        {
+            dustIcons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName() + "." + i);
+        }
+    }
+    
+    public String getUnlocalizedName(ItemStack itemstack)
+    {
+        return getUnlocalizedName() + "." + itemstack.getItemDamage();
+    }
+    
+    public boolean isFull3D()
+    {
+        return true;
+    }
+    
+    public IIcon getIconFromDamage(int meta)
+    {
+        return dustIcons[meta];
+    }
 }

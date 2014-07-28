@@ -7,10 +7,10 @@ import net.minecraft.item.ItemPickaxe;
 
 public class ItemHardenedPickaxe extends ItemPickaxe
 {
-	public ItemHardenedPickaxe()
-	{
-		super(ModToolMaterial.HARDENED);
-		this.setUnlocalizedName(Names.HARDENED_PICKAXE);
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-	}
+    public ItemHardenedPickaxe()
+    {
+        super(ModToolMaterial.HARDENED);
+        this.setUnlocalizedName(Names.HARDENED_PICKAXE);
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+    }
 }

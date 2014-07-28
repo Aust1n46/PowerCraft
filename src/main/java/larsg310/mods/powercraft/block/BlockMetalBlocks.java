@@ -15,34 +15,34 @@ import net.minecraft.world.World;
 
 public class BlockMetalBlocks extends Block
 {
-	public IIcon[] icons = new IIcon[2];
-	
-	public BlockMetalBlocks()
-	{
-		super(Material.iron);
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-		this.setBlockName(Names.METAL_BLOCKS);
-	}
-	
-	public void getSubBlocks(Item item, CreativeTabs creativeTab, List list)
-	{
-		list.add(new ItemStack(item, 1, 0));
-		list.add(new ItemStack(item, 1, 1));
-	}
-	
-	public int damageDropped(int meta)
-	{
-		return meta;
-	}
-	
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
-	{
-		int meta = world.getBlockMetadata(x, y, z);
-		return new ItemStack(this, 1, meta);
-	}
-	
-	public IIcon getIcon(int side, int meta)
-	{
-		return icons[meta];
-	}
+    public IIcon[] icons = new IIcon[2];
+    
+    public BlockMetalBlocks()
+    {
+        super(Material.iron);
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+        this.setBlockName(Names.METAL_BLOCKS);
+    }
+    
+    public void getSubBlocks(Item item, CreativeTabs creativeTab, List list)
+    {
+        list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(item, 1, 1));
+    }
+    
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
+    
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
+    {
+        int meta = world.getBlockMetadata(x, y, z);
+        return new ItemStack(this, 1, meta);
+    }
+    
+    public IIcon getIcon(int side, int meta)
+    {
+        return icons[meta];
+    }
 }

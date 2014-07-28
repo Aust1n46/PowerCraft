@@ -8,13 +8,13 @@ import net.minecraft.tileentity.TileEntity;
 
 public class SlotUpgrade extends Slot
 {
-	public SlotUpgrade(TileEntity tileentity, int id, int x, int y)
-	{
-		super((IInventory) tileentity, id, x, y);
-	}
-	
-	public boolean isItemValid(ItemStack itemstack)
-	{
-		return itemstack.getItem() instanceof IUpgrade;
-	}
+    public SlotUpgrade(TileEntity tileentity, int id, int x, int y)
+    {
+        super((IInventory) tileentity, id, x, y);
+    }
+    
+    public boolean isItemValid(ItemStack itemstack)
+    {
+        return itemstack.getItem() instanceof IUpgrade;
+    }
 }

@@ -7,10 +7,10 @@ import net.minecraft.item.ItemSpade;
 
 public class ItemHardenedShovel extends ItemSpade
 {
-	public ItemHardenedShovel()
-	{
-		super(ModToolMaterial.HARDENED);
-		this.setUnlocalizedName(Names.HARDENED_SHOVEL);
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-	}
+    public ItemHardenedShovel()
+    {
+        super(ModToolMaterial.HARDENED);
+        this.setUnlocalizedName(Names.HARDENED_SHOVEL);
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+    }
 }

@@ -14,21 +14,21 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy
 {
-	public void registerRenderers()
-	{
-		
-	}
-	
-	public void registerTileEntitys()
-	{
-		GameRegistry.registerTileEntity(TileEntityCreativeEnergyStorage.class, Reference.MOD_ID + ":EnergyStorageCreative");
-		GameRegistry.registerTileEntity(TileEntityEnergyStorageTier1.class, Reference.MOD_ID + ":EnergyStorageTier1");
-		GameRegistry.registerTileEntity(TileEntityEnergyGenerator.class, Reference.MOD_ID + ":EnergyGenerator");
-		GameRegistry.registerTileEntity(TileEntityEnergizedFurnace.class, Reference.MOD_ID + ":EnergizedFurnace");
-		GameRegistry.registerTileEntity(TileEntityEnergizedGrinder.class, Reference.MOD_ID + ":EnergizedGrinder");
-		GameRegistry.registerTileEntity(TileEntityCompressor.class, Reference.MOD_ID + ":Compressor");
-		GameRegistry.registerTileEntity(TileEntityComputerScreen.class, Reference.MOD_ID + ":ComputerScreen");
-		GameRegistry.registerTileEntity(TileEntityComputerDrive.class, Reference.MOD_ID + ":ComputerDrive");
-		GameRegistry.registerTileEntity(TileEntityConstructableBlock.class, Reference.MOD_ID + ":ConstructableBlock");
-	}
+    public void registerRenderers()
+    {
+        
+    }
+    
+    public void registerTileEntitys()
+    {
+        GameRegistry.registerTileEntity(TileEntityCreativeEnergyStorage.class, Reference.MOD_ID + ":EnergyStorageCreative");
+        GameRegistry.registerTileEntity(TileEntityEnergyStorageTier1.class, Reference.MOD_ID + ":EnergyStorageTier1");
+        GameRegistry.registerTileEntity(TileEntityEnergyGenerator.class, Reference.MOD_ID + ":EnergyGenerator");
+        GameRegistry.registerTileEntity(TileEntityEnergizedFurnace.class, Reference.MOD_ID + ":EnergizedFurnace");
+        GameRegistry.registerTileEntity(TileEntityEnergizedGrinder.class, Reference.MOD_ID + ":EnergizedGrinder");
+        GameRegistry.registerTileEntity(TileEntityCompressor.class, Reference.MOD_ID + ":Compressor");
+        GameRegistry.registerTileEntity(TileEntityComputerScreen.class, Reference.MOD_ID + ":ComputerScreen");
+        GameRegistry.registerTileEntity(TileEntityComputerDrive.class, Reference.MOD_ID + ":ComputerDrive");
+        GameRegistry.registerTileEntity(TileEntityConstructableBlock.class, Reference.MOD_ID + ":ConstructableBlock");
+    }
 }

@@ -13,49 +13,49 @@ import net.minecraft.util.IIcon;
 
 public class ItemCompressedCompound extends Item
 {
-	private String[] compounds = new String[] {"coalObsidian"};
-	private IIcon[] compoundIcons = new IIcon[compounds.length];
-	
-	public ItemCompressedCompound()
-	{
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-		this.setUnlocalizedName(Names.COMPRESSED_COMPOUNDS);
-		this.setHasSubtypes(true);
-	}
-	
-	public void getSubItems(Item item, CreativeTabs tab, List list)
-	{
-		for (int meta = 0; meta < compounds.length; meta++)
-		{
-			list.add(new ItemStack(this, 1, meta));
-		}
-	}
-	
-	public IIcon getIconIndex(ItemStack itemstack)
-	{
-		return compoundIcons[itemstack.getItemDamage()];
-	}
-	
-	public void registerIcons(IIconRegister iconRegister)
-	{
-		for (int i = 0; i < compounds.length; i++)
-		{
-			compoundIcons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName() + "." + i);
-		}
-	}
-	
-	public String getUnlocalizedName(ItemStack itemstack)
-	{
-		return getUnlocalizedName() + "." + itemstack.getItemDamage();
-	}
-	
-	public boolean isFull3D()
-	{
-		return true;
-	}
-	
-	public IIcon getIconFromDamage(int meta)
-	{
-		return compoundIcons[meta];
-	}
+    private String[] compounds = new String[] {"coalObsidian"};
+    private IIcon[] compoundIcons = new IIcon[compounds.length];
+    
+    public ItemCompressedCompound()
+    {
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+        this.setUnlocalizedName(Names.COMPRESSED_COMPOUNDS);
+        this.setHasSubtypes(true);
+    }
+    
+    public void getSubItems(Item item, CreativeTabs tab, List list)
+    {
+        for (int meta = 0; meta < compounds.length; meta++)
+        {
+            list.add(new ItemStack(this, 1, meta));
+        }
+    }
+    
+    public IIcon getIconIndex(ItemStack itemstack)
+    {
+        return compoundIcons[itemstack.getItemDamage()];
+    }
+    
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        for (int i = 0; i < compounds.length; i++)
+        {
+            compoundIcons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName() + "." + i);
+        }
+    }
+    
+    public String getUnlocalizedName(ItemStack itemstack)
+    {
+        return getUnlocalizedName() + "." + itemstack.getItemDamage();
+    }
+    
+    public boolean isFull3D()
+    {
+        return true;
+    }
+    
+    public IIcon getIconFromDamage(int meta)
+    {
+        return compoundIcons[meta];
+    }
 }

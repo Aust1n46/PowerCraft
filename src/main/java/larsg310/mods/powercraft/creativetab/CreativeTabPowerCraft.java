@@ -15,14 +15,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class CreativeTabPowerCraft extends CreativeTabs
 {
-	public CreativeTabPowerCraft(int id, String name)
-	{
-		super(id, name);
-	}
-	
-	@Override
-	public Item getTabIconItem()
-	{
-		return Item.getItemFromBlock(ModBlocks.CABLE);
-	}
+    public CreativeTabPowerCraft(int id, String name)
+    {
+        super(id, name);
+    }
+    
+    @Override
+    public Item getTabIconItem()
+    {
+        return Item.getItemFromBlock(ModBlocks.CABLE);
+    }
 }

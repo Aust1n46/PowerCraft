@@ -8,11 +8,11 @@ import net.minecraft.item.ItemBucket;
 
 public class BucketLiquidizedMatter extends ItemBucket
 {
-	public BucketLiquidizedMatter()
-	{
-		super(ModBlocks.LIQUIDIZED_MATTER);
-		this.setUnlocalizedName(Names.BUCKET_LIQUIDIZED_MATTER);
-		this.setContainerItem(Items.bucket);
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-	}
+    public BucketLiquidizedMatter()
+    {
+        super(ModBlocks.LIQUIDIZED_MATTER);
+        this.setUnlocalizedName(Names.BUCKET_LIQUIDIZED_MATTER);
+        this.setContainerItem(Items.bucket);
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+    }
 }

@@ -9,13 +9,14 @@ import larsg310.mods.powercraft.app.IAppHandler;
 
 public class AppHandler implements IAppHandler
 {
-	@Override
-	public void addAppsToList(HashMap<Integer, App> apps)
-	{
-		apps.put(AppRegistry.instance.getNextAvailableId(), new AppBlockInfo());
-	}
-	public static void register()
-	{
-		AppRegistry.instance.registerAppHandler(new AppHandler());
-	}
+    @Override
+    public void addAppsToList(HashMap<Integer, App> apps)
+    {
+        apps.put(AppRegistry.instance.getNextAvailableId(), new AppBlockInfo());
+    }
+    
+    public static void register()
+    {
+        AppRegistry.instance.registerAppHandler(new AppHandler());
+    }
 }

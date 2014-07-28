@@ -7,12 +7,13 @@ import cpw.mods.fml.relauncher.Side;
 
 public class PacketHandler
 {
-	public static SimpleNetworkWrapper network;
-	
-	public static void init()
-	{
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID + ":PacketChannel");
-		
-//		network.registerMessage(PacketExtraInventoryUpdate.class, PacketExtraInventoryUpdate.class, 0, Side.SERVER);
-	}
+    public static SimpleNetworkWrapper network;
+    
+    public static void init()
+    {
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID + ":PacketChannel");
+        
+        // network.registerMessage(PacketExtraInventoryUpdate.class,
+        // PacketExtraInventoryUpdate.class, 0, Side.SERVER);
+    }
 }

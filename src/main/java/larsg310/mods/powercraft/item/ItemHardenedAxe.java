@@ -7,10 +7,10 @@ import net.minecraft.item.ItemAxe;
 
 public class ItemHardenedAxe extends ItemAxe
 {
-	public ItemHardenedAxe()
-	{
-		super(ModToolMaterial.HARDENED);
-		this.setUnlocalizedName(Names.HARDENED_AXE);
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-	}
+    public ItemHardenedAxe()
+    {
+        super(ModToolMaterial.HARDENED);
+        this.setUnlocalizedName(Names.HARDENED_AXE);
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+    }
 }

@@ -23,19 +23,19 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
-	@Override
-	public void registerRenderers()
-	{
-		ClientRegistry.registerTileEntity(TileEntityCable.class, Reference.MOD_ID + ":" + Names.CABLE, TileEntityCableRenderer.instance);
-		ClientRegistry.registerTileEntity(TileEntityUninsulatedCable.class, Reference.MOD_ID + ":" + Names.CABLE + "Uninsulated", TileEntityCableRenderer.instance);
-		ClientRegistry.registerTileEntity(TileEntityComputerScreen.class, Reference.MOD_ID + ":" + Names.COMPUTER + "Screen", TileEntityComputerScreenRenderer.instance);
-		ClientRegistry.registerTileEntity(TileEntityComputerDrive.class, Reference.MOD_ID + ":" + Names.COMPUTER + "Drive", TileEntityComputerDriveRenderer.instance);
-		
-		RenderingRegistry.registerBlockHandler(RenderIds.CONSTRUCTABLE_BLOCK, TileEntityContructableBlockRenderer.instance);
-		
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.CABLE), ItemCableRenderer.instance);
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.COMPUTER), ItemComputerRenderer.instance);
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new EntityRobotRenderer());
-	}
+    @Override
+    public void registerRenderers()
+    {
+        ClientRegistry.registerTileEntity(TileEntityCable.class, Reference.MOD_ID + ":" + Names.CABLE, TileEntityCableRenderer.instance);
+        ClientRegistry.registerTileEntity(TileEntityUninsulatedCable.class, Reference.MOD_ID + ":" + Names.CABLE + "Uninsulated", TileEntityCableRenderer.instance);
+        ClientRegistry.registerTileEntity(TileEntityComputerScreen.class, Reference.MOD_ID + ":" + Names.COMPUTER + "Screen", TileEntityComputerScreenRenderer.instance);
+        ClientRegistry.registerTileEntity(TileEntityComputerDrive.class, Reference.MOD_ID + ":" + Names.COMPUTER + "Drive", TileEntityComputerDriveRenderer.instance);
+        
+        RenderingRegistry.registerBlockHandler(RenderIds.CONSTRUCTABLE_BLOCK, TileEntityContructableBlockRenderer.instance);
+        
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.CABLE), ItemCableRenderer.instance);
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.COMPUTER), ItemComputerRenderer.instance);
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new EntityRobotRenderer());
+    }
 }

@@ -13,44 +13,44 @@ import net.minecraft.util.IIcon;
 
 public class ItemIngots extends Item
 {
-	private String[] ingots = new String[] {"refined", "coalObsidian"};
-	private IIcon[] ingotIcons = new IIcon[ingots.length];
-	
-	public ItemIngots()
-	{
-		this.setCreativeTab(PowerCraft.CREATIVE_TAB);
-		this.setUnlocalizedName(Names.INGOTS);
-		this.setHasSubtypes(true);
-	}
-	
-	public void getSubItems(Item item, CreativeTabs tab, List list)
-	{
-		for (int meta = 0; meta < ingots.length; meta++)
-		{
-			list.add(new ItemStack(this, 1, meta));
-		}
-	}
-	
-	public IIcon getIconIndex(ItemStack itemstack)
-	{
-		return ingotIcons[itemstack.getItemDamage()];
-	}
-	
-	public void registerIcons(IIconRegister iconRegister)
-	{
-		for (int i = 0; i < ingots.length; i++)
-		{
-			ingotIcons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName() + "." + i);
-		}
-	}
-	
-	public String getUnlocalizedName(ItemStack itemstack)
-	{
-		return getUnlocalizedName() + "." + itemstack.getItemDamage();
-	}
-	
-	public IIcon getIconFromDamage(int meta)
-	{
-		return ingotIcons[meta];
-	}
+    private String[] ingots = new String[] {"refined", "coalObsidian"};
+    private IIcon[] ingotIcons = new IIcon[ingots.length];
+    
+    public ItemIngots()
+    {
+        this.setCreativeTab(PowerCraft.CREATIVE_TAB);
+        this.setUnlocalizedName(Names.INGOTS);
+        this.setHasSubtypes(true);
+    }
+    
+    public void getSubItems(Item item, CreativeTabs tab, List list)
+    {
+        for (int meta = 0; meta < ingots.length; meta++)
+        {
+            list.add(new ItemStack(this, 1, meta));
+        }
+    }
+    
+    public IIcon getIconIndex(ItemStack itemstack)
+    {
+        return ingotIcons[itemstack.getItemDamage()];
+    }
+    
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        for (int i = 0; i < ingots.length; i++)
+        {
+            ingotIcons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName() + "." + i);
+        }
+    }
+    
+    public String getUnlocalizedName(ItemStack itemstack)
+    {
+        return getUnlocalizedName() + "." + itemstack.getItemDamage();
+    }
+    
+    public IIcon getIconFromDamage(int meta)
+    {
+        return ingotIcons[meta];
+    }
 }
