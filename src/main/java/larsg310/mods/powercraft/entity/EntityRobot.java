@@ -2,7 +2,7 @@ package larsg310.mods.powercraft.entity;
 
 import larsg310.mods.powercraft.ai.EntityAIRobotBuild;
 import larsg310.mods.powercraft.task.Task;
-import larsg310.mods.powercraft.task.TaskType;
+import larsg310.mods.powercraft.task.TaskBuildDirewolf20House;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -60,7 +60,7 @@ public class EntityRobot extends EntityCreature
     
     public boolean interact(EntityPlayer player)
     {
-        Task task = new Task(TaskType.BUILD_HOUSE);
+        TaskBuildDirewolf20House task = new TaskBuildDirewolf20House();
         task.buildTask();
         this.setTask(task);
         return true;

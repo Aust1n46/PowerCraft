@@ -5,3 +5,5 @@
 !gradlew*
 !/gradle/
 .gradle
+.gitattributes
+.project

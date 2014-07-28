@@ -8,59 +8,35 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import larsg310.mods.powercraft.entity.EntityRobot;
 import larsg310.mods.powercraft.util.BlockCoord;
 import net.minecraft.client.Minecraft;
 
-public class Task
+public abstract class Task
 {
-    public List<BlockCoord> blocks = new ArrayList<BlockCoord>();
-    private TaskType type;
+    public String path;
     
-    public Task(TaskType type)
+    protected Task(String path)
     {
-        this.type = type;
+        this.path = path;
     }
     
-    public TaskType getTaskType()
+    public abstract void execute(EntityRobot entity);
+    
+    public void startExecuting()
     {
-        return type;
+        
     }
     
-    public void buildTask()
+    public void resetTask()
     {
-        String basePath = Minecraft.getMinecraft().mcDataDir.getAbsolutePath();
-        String path = basePath.substring(0, basePath.length() - 1) + "tasks\\" + type.path;
-        try
-        {
-            FileInputStream fileIn = new FileInputStream(path);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            blocks = (ArrayList<BlockCoord>) in.readObject();
-            in.close();
-            fileIn.close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        
     }
     
-    public void save()
+    public abstract boolean shouldExecute();
+    
+    public boolean continueExecuting()
     {
-        String basePath = Minecraft.getMinecraft().mcDataDir.getAbsolutePath();
-        String path = basePath.substring(0, basePath.length() - 1) + "tasks\\" + type.path;
-        File file = new File(path);
-        try
-        {
-            FileOutputStream fileOut = new FileOutputStream(path);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(blocks);
-            out.close();
-            fileOut.close();
-            
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        return true;
     }
 }

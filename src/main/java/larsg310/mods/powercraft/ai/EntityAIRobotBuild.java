@@ -10,7 +10,6 @@ import net.minecraft.init.Blocks;
 public class EntityAIRobotBuild extends EntityAIBase
 {
     public EntityRobot entity;
-    public int ticksBuilding;
     
     public EntityAIRobotBuild(EntityRobot entity)
     {
@@ -19,51 +18,35 @@ public class EntityAIRobotBuild extends EntityAIBase
     
     public void startExecuting()
     {
-        this.ticksBuilding = 0;
+        if (entity.getTask() != null)
+        {
+            entity.getTask().startExecuting();
+        }
     }
     
     public void resetTask()
     {
-        this.ticksBuilding = 0;
+        if (entity.getTask() != null)
+        {
+            entity.getTask().resetTask();
+        }
     }
     
     public boolean shouldExecute()
     {
-        return entity.hasTask();
+        return entity.getTask() != null && entity.getTask().shouldExecute();
     }
     
     public boolean continueExecuting()
     {
-        return entity.getTask() != null && entity.getTask().blocks.size() > 0;
+        return entity.getTask() != null && entity.getTask().continueExecuting();
     }
     
     public void updateTask()
     {
         if (entity.getTask() != null)
         {
-            if (entity.getTask().blocks.size() > 0)
-            {
-                ticksBuilding++;
-                if (ticksBuilding > 20)
-                {
-                    ticksBuilding -= 20;
-                    BlockCoord coord = entity.getTask().blocks.remove(0);
-                    int x = (int) (entity.posX + coord.getX()), y = (int) (entity.posY + coord.getY()), z = (int) (entity.posZ + coord.getZ());
-                    if (entity.worldObj.getBlock(x, y, z) != coord.getBlock())
-                    {
-                        if (entity.worldObj.getBlock(x, y, z) != Blocks.air)
-                        {
-                            entity.worldObj.getBlock(x, y, z).dropBlockAsItemWithChance(entity.worldObj, x, y, z, coord.getMeta(), 1, 0);
-                            entity.worldObj.getBlock(x, y, z).breakBlock(entity.worldObj, x, y, z, coord.getBlock(), coord.getMeta());
-                        }
-                        entity.worldObj.setBlock(x, y, z, coord.getBlock(), coord.getMeta(), 3);
-                    }
-                }
-            }
-            else
-            {
-                entity.setTask(null);
-            }
+            entity.getTask().execute(entity);
         }
     }
 }
