@@ -13,15 +13,15 @@ import larsg310.mods.powercraft.util.BlockCoord;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 
-public class TaskBuildDirewolf20House extends Task
+public class TaskBuild extends Task
 {
     public List<BlockCoord> blocks = new ArrayList<BlockCoord>();
     public int ticksBuilding;
     public int blocksPlaced;
     
-    public TaskBuildDirewolf20House()
+    public TaskBuild(String name)
     {
-        super("buildDirewolf20House.task");
+        super(name);
     }
     
     @Override
@@ -58,6 +58,7 @@ public class TaskBuildDirewolf20House extends Task
                         entity.worldObj.getBlock(x, y, z).breakBlock(entity.worldObj, x, y, z, coord.getBlock(), coord.getMeta());
                     }
                     entity.worldObj.setBlock(x, y, z, coord.getBlock(), coord.getMeta(), 3);
+                    if(coord.getBlock() == Blocks.wooden_door) entity.worldObj.setBlock(x, y+1, z, coord.getBlock(), 8, 3);
                 }
                 blocksPlaced++;
             }

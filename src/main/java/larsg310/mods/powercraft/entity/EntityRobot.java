@@ -1,8 +1,9 @@
 package larsg310.mods.powercraft.entity;
 
 import larsg310.mods.powercraft.ai.EntityAIRobotBuild;
+import larsg310.mods.powercraft.item.ModItems;
 import larsg310.mods.powercraft.task.Task;
-import larsg310.mods.powercraft.task.TaskBuildDirewolf20House;
+import larsg310.mods.powercraft.task.TaskBuild;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -10,6 +11,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityRobot extends EntityCreature
@@ -53,16 +55,29 @@ public class EntityRobot extends EntityCreature
         return task;
     }
     
-    public void setTask(Task task)
+    public boolean setTask(Task task)
     {
-        this.task = task;
+        if (this.task == null)
+        {
+            this.task = task;
+            return true;
+        }
+        return false;
     }
     
     public boolean interact(EntityPlayer player)
     {
-        TaskBuildDirewolf20House task = new TaskBuildDirewolf20House();
-        task.buildTask();
-        this.setTask(task);
-        return true;
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().isItemEqual(new ItemStack(ModItems.TASK, 1, 0)))
+        {
+            TaskBuild task = new TaskBuild(player.getCurrentEquippedItem().getDisplayName() + ".task");
+            task.buildTask();
+            return this.setTask(task);
+        }
+        return false;
+    }
+    
+    protected boolean canDespawn()
+    {
+        return false;
     }
 }

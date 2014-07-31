@@ -55,7 +55,7 @@ public class BucketHandler
     
     public static void register()
     {
-        BucketHandler.INSTANCE.buckets.put(ModBlocks.LIQUIDIZED_MATTER, ModItems.BUCKET_LIQUIDIZED_MATTER);
+        BucketHandler.INSTANCE.buckets.put(ModBlocks.LIQUIDIZED_MATTER, ModItems.LIQUIDIZED_MATTER_BUCKET);
         MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
     }
 }

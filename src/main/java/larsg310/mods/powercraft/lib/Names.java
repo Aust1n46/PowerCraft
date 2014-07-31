@@ -24,4 +24,5 @@ public class Names
     public static final String HARDENED_HOE = "hardenedHoe";
     public static final String UPGRADES = "upgrades";
     public static final String BUCKET_LIQUIDIZED_MATTER = "bucketLiquidizedMatter";
+    public static final String TASK = "task";
 }

@@ -21,7 +21,8 @@ public class ModItems
     public static Item HARDENED_AXE;
     public static Item HARDENED_HOE;
     public static Item UPGRADES;
-    public static Item BUCKET_LIQUIDIZED_MATTER;
+    public static Item LIQUIDIZED_MATTER_BUCKET;
+    public static Item TASK;
     
     public static void init()
     {
@@ -36,7 +37,8 @@ public class ModItems
         HARDENED_AXE = new ItemHardenedAxe();
         HARDENED_HOE = new ItemHardenedHoe();
         UPGRADES = new ItemUpgrades();
-        BUCKET_LIQUIDIZED_MATTER = new BucketLiquidizedMatter();
+        LIQUIDIZED_MATTER_BUCKET = new ItemLiquidizedMatterBucket();
+        TASK = new ItemTask();
         
         GameRegistry.registerItem(DEBUGGER_TOOL, Names.ENERGY_METER);
         GameRegistry.registerItem(DUSTS, Names.DUSTS);
@@ -49,7 +51,8 @@ public class ModItems
         GameRegistry.registerItem(HARDENED_AXE, Names.HARDENED_AXE);
         GameRegistry.registerItem(HARDENED_HOE, Names.HARDENED_HOE);
         GameRegistry.registerItem(UPGRADES, Names.UPGRADES);
-        GameRegistry.registerItem(BUCKET_LIQUIDIZED_MATTER, Names.BUCKET_LIQUIDIZED_MATTER);
+        GameRegistry.registerItem(LIQUIDIZED_MATTER_BUCKET, Names.BUCKET_LIQUIDIZED_MATTER);
+        GameRegistry.registerItem(TASK, Names.TASK);
         
         // FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack(Names.LIQUIDIZED_MATTER,
         // FluidContainerRegistry.BUCKET_VOLUME), new

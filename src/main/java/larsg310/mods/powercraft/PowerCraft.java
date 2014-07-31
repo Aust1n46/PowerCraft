@@ -13,7 +13,7 @@ import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.proxy.CommonProxy;
 import larsg310.mods.powercraft.recipe.CraftingRecipes;
 import larsg310.mods.powercraft.recipe.SmeltingRecipes;
-import larsg310.mods.powercraft.task.TaskBuildDirewolf20House;
+import larsg310.mods.powercraft.task.TaskBuild;
 import larsg310.mods.powercraft.util.BlockCoord;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -60,46 +60,6 @@ public class PowerCraft
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        TaskBuildDirewolf20House task = new TaskBuildDirewolf20House();
         
-        for (int y = 0; y < 5; y++)
-        {
-            task.blocks.add(new BlockCoord(0, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(1, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(2, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(3, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(4, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(5, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(6, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(7, y, 0, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 0, Blocks.cobblestone));
-            
-            task.blocks.add(new BlockCoord(0, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(1, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(2, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(3, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(4, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(5, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(6, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(7, y, 8, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 8, Blocks.cobblestone));
-            
-            task.blocks.add(new BlockCoord(0, y, 1, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(0, y, 2, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(0, y, 3, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(0, y, 4, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(0, y, 5, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(0, y, 6, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(0, y, 7, Blocks.cobblestone));
-            
-            task.blocks.add(new BlockCoord(8, y, 1, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 2, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 3, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 4, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 5, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 6, Blocks.cobblestone));
-            task.blocks.add(new BlockCoord(8, y, 7, Blocks.cobblestone));
-        }
-        task.save();
     }
 }

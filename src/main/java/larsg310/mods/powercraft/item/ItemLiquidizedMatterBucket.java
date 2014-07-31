@@ -6,9 +6,9 @@ import larsg310.mods.powercraft.lib.Names;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBucket;
 
-public class BucketLiquidizedMatter extends ItemBucket
+public class ItemLiquidizedMatterBucket extends ItemBucket
 {
-    public BucketLiquidizedMatter()
+    public ItemLiquidizedMatterBucket()
     {
         super(ModBlocks.LIQUIDIZED_MATTER);
         this.setUnlocalizedName(Names.BUCKET_LIQUIDIZED_MATTER);
