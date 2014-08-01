@@ -1,9 +1,9 @@
 package larsg310.mods.powercraft.tileentity;
 
 import larsg310.mods.powercraft.block.BlockType;
+import larsg310.mods.powercraft.energy.EnergyBar;
 import larsg310.mods.powercraft.energy.EnergyNet;
 import larsg310.mods.powercraft.energy.IEnergy;
-import larsg310.mods.powercraft.energy.EnergyBar;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;

@@ -1,6 +1,5 @@
 package larsg310.mods.powercraft.util;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 

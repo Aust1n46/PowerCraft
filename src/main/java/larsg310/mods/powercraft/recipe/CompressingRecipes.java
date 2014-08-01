@@ -2,7 +2,6 @@ package larsg310.mods.powercraft.recipe;
 
 import larsg310.mods.powercraft.block.ModBlocks;
 import larsg310.mods.powercraft.item.ModItems;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

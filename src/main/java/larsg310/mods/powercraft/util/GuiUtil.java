@@ -1,7 +1,5 @@
 package larsg310.mods.powercraft.util;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.Tessellator;
 
 public class GuiUtil

@@ -1,6 +1,5 @@
 package larsg310.mods.powercraft.block;
 
-import larsg310.mods.powercraft.PowerCraft;
 import larsg310.mods.powercraft.fluid.ModFluids;
 import larsg310.mods.powercraft.lib.Names;
 import larsg310.mods.powercraft.lib.Reference;

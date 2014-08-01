@@ -14,7 +14,6 @@ import larsg310.mods.powercraft.util.InventoryUtil;
 import larsg310.mods.powercraft.util.NBTUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

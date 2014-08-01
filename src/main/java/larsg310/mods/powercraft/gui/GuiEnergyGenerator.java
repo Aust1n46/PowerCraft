@@ -2,21 +2,19 @@ package larsg310.mods.powercraft.gui;
 
 import java.util.Arrays;
 
-import org.lwjgl.opengl.GL11;
-
-import larsg310.mods.powercraft.container.ContainerEnergizedGrinder;
 import larsg310.mods.powercraft.container.ContainerEnergyGenerator;
-import larsg310.mods.powercraft.energy.IEnergy;
 import larsg310.mods.powercraft.energy.EnergyBar;
+import larsg310.mods.powercraft.energy.IEnergy;
 import larsg310.mods.powercraft.lib.Energy;
 import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.tileentity.TileEntityEnergyGenerator;
 import larsg310.mods.powercraft.util.GuiUtil;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiEnergyGenerator extends GuiContainer
 {

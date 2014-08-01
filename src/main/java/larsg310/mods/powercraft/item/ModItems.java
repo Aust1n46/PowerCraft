@@ -1,11 +1,7 @@
 package larsg310.mods.powercraft.item;
 
 import larsg310.mods.powercraft.lib.Names;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems

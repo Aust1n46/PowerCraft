@@ -7,7 +7,6 @@ import larsg310.mods.powercraft.damage.DamageSources;
 import larsg310.mods.powercraft.energy.EnergyBar;
 import larsg310.mods.powercraft.energy.IEnergy;
 import larsg310.mods.powercraft.item.ModItems;
-import larsg310.mods.powercraft.recipe.CompressingRecipes;
 import larsg310.mods.powercraft.recipe.GrindingRecipes;
 import larsg310.mods.powercraft.upgrade.IUpgrade;
 import larsg310.mods.powercraft.upgrade.Upgrade;

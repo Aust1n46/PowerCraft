@@ -4,8 +4,6 @@ import larsg310.mods.powercraft.PowerCraft;
 import larsg310.mods.powercraft.lib.GuiIds;
 import larsg310.mods.powercraft.lib.Names;
 import larsg310.mods.powercraft.lib.Reference;
-import larsg310.mods.powercraft.tileentity.TileEntityEnergizedFurnace;
-import larsg310.mods.powercraft.tileentity.TileEntityEnergizedGrinder;
 import larsg310.mods.powercraft.tileentity.TileEntityEnergyGenerator;
 import larsg310.mods.powercraft.util.BlockUtil;
 import net.minecraft.block.Block;
@@ -16,7 +14,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 

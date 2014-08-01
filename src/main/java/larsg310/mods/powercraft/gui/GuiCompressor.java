@@ -3,7 +3,6 @@ package larsg310.mods.powercraft.gui;
 import java.util.Arrays;
 
 import larsg310.mods.powercraft.container.ContainerCompressor;
-import larsg310.mods.powercraft.container.ContainerEnergizedFurnace;
 import larsg310.mods.powercraft.energy.EnergyBar;
 import larsg310.mods.powercraft.energy.IEnergy;
 import larsg310.mods.powercraft.lib.Energy;

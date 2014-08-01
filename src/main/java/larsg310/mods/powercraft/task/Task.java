@@ -1,16 +1,6 @@
 package larsg310.mods.powercraft.task;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import larsg310.mods.powercraft.entity.EntityRobot;
-import larsg310.mods.powercraft.util.BlockCoord;
-import net.minecraft.client.Minecraft;
 
 public abstract class Task
 {

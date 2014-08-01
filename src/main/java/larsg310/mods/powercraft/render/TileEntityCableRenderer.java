@@ -5,15 +5,9 @@ import larsg310.mods.powercraft.energy.IEnergy;
 import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.model.ModelCable;
 import larsg310.mods.powercraft.model.ModelUninsulatedCable;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 

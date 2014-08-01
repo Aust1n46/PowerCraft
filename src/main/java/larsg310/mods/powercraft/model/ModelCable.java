@@ -1,7 +1,5 @@
 package larsg310.mods.powercraft.model;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 

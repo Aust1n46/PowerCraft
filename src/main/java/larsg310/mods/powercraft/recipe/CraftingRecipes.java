@@ -1,6 +1,5 @@
 package larsg310.mods.powercraft.recipe;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import larsg310.mods.powercraft.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;

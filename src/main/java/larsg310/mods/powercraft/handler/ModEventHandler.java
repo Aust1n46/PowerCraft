@@ -1,21 +1,9 @@
 package larsg310.mods.powercraft.handler;
 
-import larsg310.mods.powercraft.block.ModBlocks;
-import larsg310.mods.powercraft.energy.IEnergy;
-import larsg310.mods.powercraft.item.ModItems;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
-import static net.minecraftforge.common.util.ForgeDirection.*;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 

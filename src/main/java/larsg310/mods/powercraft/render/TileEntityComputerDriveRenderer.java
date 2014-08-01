@@ -4,7 +4,6 @@ import larsg310.mods.powercraft.lib.Reference;
 import larsg310.mods.powercraft.model.ModelComputerDrive;
 import larsg310.mods.powercraft.tileentity.TileEntityComputerDrive;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

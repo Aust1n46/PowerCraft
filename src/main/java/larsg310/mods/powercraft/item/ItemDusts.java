@@ -2,8 +2,6 @@ package larsg310.mods.powercraft.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import larsg310.mods.powercraft.PowerCraft;
 import larsg310.mods.powercraft.lib.Names;
 import larsg310.mods.powercraft.lib.Reference;

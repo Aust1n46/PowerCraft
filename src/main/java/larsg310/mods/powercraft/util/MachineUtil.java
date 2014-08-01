@@ -1,7 +1,6 @@
 package larsg310.mods.powercraft.util;
 
 import larsg310.mods.powercraft.energy.EnergyBar;
-import larsg310.mods.powercraft.recipe.CompressingRecipes;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
