@@ -10,7 +10,6 @@ public class Names
     public static final String COMPUTER = "computer";
     public static final String METAL_BLOCKS = "metalBlocks";
     public static final String LIQUIDIZED_MATTER = "liquidizedMatter";
-    public static final String CONSTRUCTABLE_BLOCK = "constructableBlock";
     
     public static final String ENERGY_METER = "energyMeter";
     public static final String DUSTS = "dusts";

@@ -14,7 +14,6 @@ public class ModBlocks
     public static Block COMPUTER;
     public static Block METAL_BLOCKS;
     public static Block LIQUIDIZED_MATTER;
-    public static Block CONSTRUCTABLE_BLOCK;
     
     public static void init()
     {
@@ -26,7 +25,6 @@ public class ModBlocks
         COMPUTER = new BlockComputer();
         METAL_BLOCKS = new BlockMetalBlocks();
         LIQUIDIZED_MATTER = new BlockLiquidizedMatter();
-        CONSTRUCTABLE_BLOCK = new BlockConstructableBlock();
         
         GameRegistry.registerBlock(CABLE, ItemBlockStandardMetadata.class, Names.CABLE);
         GameRegistry.registerBlock(ENERGY_STORAGE, ItemBlockStandardMetadata.class, Names.ENERGY_STORAGE);
@@ -36,6 +34,5 @@ public class ModBlocks
         GameRegistry.registerBlock(COMPUTER, ItemBlockStandardMetadata.class, Names.COMPUTER);
         GameRegistry.registerBlock(METAL_BLOCKS, ItemBlockStandardMetadata.class, Names.METAL_BLOCKS);
         GameRegistry.registerBlock(LIQUIDIZED_MATTER, Names.LIQUIDIZED_MATTER);
-        GameRegistry.registerBlock(CONSTRUCTABLE_BLOCK, Names.CONSTRUCTABLE_BLOCK);
     }
 }
