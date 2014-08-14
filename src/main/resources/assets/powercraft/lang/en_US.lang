@@ -43,10 +43,19 @@ item.ingots.1.name=Hardened Ingot
 
 item.upgrades.0.name=Storage Upgrade
 item.upgrades.1.name=Efficiency Upgrade
-item.upgrades.2.name=Speed upgrade
+item.upgrades.2.name=Speed Upgrade
+item.upgrades.3.name=Inventory Upgrade
+
+item.hardenedPickaxe.name=Hardened Pickaxe
+item.hardenedShovel.name=Hardened Shovel
+item.hardenedAxe.name=Hardened Axe
+item.hardenedHoe.name=Hardened Hoe
+item.hardenedSword.name=Hardened Sword
+
+item.bucketLiquidizedMatter.name=Liquidized Matter Bucket
+
+item.task.0.name=Build Task
 
 itemGroup.powercraft=PowerCraft
-
-info.block.stone=Stone is a block that is found in the world under about three layers of dirt of the surface. When mined, it drops cobblestone. Stone can also be used as a building material and for crafting. 
 
 death.attack.electricity=%1$s was electrocuted
