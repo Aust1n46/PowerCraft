@@ -80,11 +80,11 @@ public class ItemTask extends Item
                                 int height = highestY - lowestY;
                                 int depth = highestZ - lowestZ;
                                 TaskBuild task = new TaskBuild(stack.getDisplayName() + ".task");
-                                for (int y = 0; y < height+1; y++)
+                                for (int y = 0; y < height + 1; y++)
                                 {
-                                    for (int z = 0; z < depth+1; z++)
+                                    for (int z = 0; z < depth + 1; z++)
                                     {
-                                        for (int x = 0; x < width+1; x++)
+                                        for (int x = 0; x < width + 1; x++)
                                         {
                                             task.blocks.add(new BlockCoord(x, y, z, world.getBlock(lowestX + x, lowestY + y, lowestZ + z), world.getBlockMetadata(lowestX + x, lowestY + y, lowestZ + z)));
                                         }
